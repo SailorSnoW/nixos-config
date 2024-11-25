@@ -9,5 +9,9 @@
       plugins = [ "git" ];
       theme = "robbyrussell";
     };
+    shellAliases = {
+      ll = "ls -l";
+      update-server = "sudo nixos-rebuild switch --flake .#server";
+    };
   };
 }

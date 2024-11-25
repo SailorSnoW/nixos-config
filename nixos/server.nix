@@ -107,8 +107,7 @@
     enable = true;
     settings = {
       PermitRootLogin = "no";
-      # Remove if you want to SSH using passwords
-      PasswordAuthentication = true;
+      PasswordAuthentication = false;
     };
   };
 
