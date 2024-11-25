@@ -19,7 +19,12 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
+
+    # ./hardware-configuration.nix
   ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   nixpkgs = {
     # You can add overlays here
@@ -83,10 +88,17 @@
     podman-compose
   ];
 
-  services.podman = {
-    enable = true;
-    socketActivation = true;
+  virtualisation.containers.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
+
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
   services.openssh = {
