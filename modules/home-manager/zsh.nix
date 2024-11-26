@@ -11,11 +11,17 @@
       theme = "robbyrussell";
     };
     shellAliases = {
+      ff = "fastfetch";
       cd = "z";
       ls = "eza";
       ll = "eza -l";
       update-server = "sudo nixos-rebuild switch --flake .#server";
     };
+    initExtra = ''
+      if command -v fastfetch >/dev/null 2>&1; then
+        fastfetch
+      fi
+    '';
   };
 
   programs.starship = {
