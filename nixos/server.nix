@@ -83,6 +83,7 @@
   console.keyMap = "fr";
 
   environment.systemPackages = with pkgs; [
+    wget
     git
     curl
     neovim
