@@ -85,6 +85,7 @@
     neovim
     tmux
     fastfetch
+    htop
     podman
     podman-compose
   ];
@@ -101,6 +102,12 @@
     };
   };
 
+
+  # Time sync
+  services.ntp = {
+    enable = true;
+    servers = [ "pool.ntp.org" ];   
+  };
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
   services.openssh = {
@@ -109,6 +116,20 @@
       PermitRootLogin = "no";
       PasswordAuthentication = false;
     };
+  };
+  services.fail2ban = {
+    enable = true;
+  };
+
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L" # print build logs
+    ];
+    dates = "03:00";
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
