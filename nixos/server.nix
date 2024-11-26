@@ -75,6 +75,11 @@
     };
   };
 
+  time = {
+    timeZone = "Europe/Paris";
+    hardwareClockInLocalTime = true;
+  };
+
   console.keyMap = "fr";
 
   environment.systemPackages = with pkgs; [

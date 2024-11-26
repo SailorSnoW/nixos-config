@@ -17,6 +17,10 @@
       ll = "eza -l";
       update-server = "sudo nixos-rebuild switch --flake .#server";
     };
+    history = {
+      expireDuplicatesFirst = true;
+      save = 1000;
+    };
     initExtra = ''
       if command -v fastfetch >/dev/null 2>&1; then
         fastfetch
