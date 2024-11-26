@@ -2,6 +2,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
     oh-my-zsh = {
@@ -14,5 +15,10 @@
       ll = "eza -l";
       update-server = "sudo nixos-rebuild switch --flake .#server";
     };
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
   };
 }
