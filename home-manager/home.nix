@@ -55,6 +55,10 @@
     enable = true;
     enableZshIntegration = true;
   };
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
