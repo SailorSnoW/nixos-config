@@ -10,7 +10,8 @@
       theme = "robbyrussell";
     };
     shellAliases = {
-      ll = "ls -l";
+      ls = "eza";
+      ll = "eza -l";
       update-server = "sudo nixos-rebuild switch --flake .#server";
     };
   };

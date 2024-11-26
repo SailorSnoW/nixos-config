@@ -46,7 +46,15 @@
   # Add stuff for your user as you see fit:
   programs.neovim.enable = true;
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    userName = "SailorSnoW";
+    userEmail = "sailorsnow@pm.me";
+  };
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
