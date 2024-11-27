@@ -4,7 +4,7 @@
 }: {
   # You can import other home-manager modules here
   imports = [
-    outputs.homeManagerModules.zsh
+    ../modules/home-manager/zsh.nix
   ];
 
   nixpkgs = {
