@@ -3,6 +3,9 @@
 {
   inputs,
   outputs,
+  lib,
+  modulesPath,
+  config,
   pkgs,
   ...
 }: {
@@ -18,11 +21,15 @@
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
 
+    # ../modules/nixos/proxmox-lxc.nix
     # ./hardware-configuration.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # In case this is a container context we don't want this
+  boot = lib.mkIf (!config.boot.isContainer) {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+  };
 
   nixpkgs = {
     # You can add overlays here
@@ -42,9 +49,6 @@
       #   });
       # })
     ];
-    # Configure your nixpkgs instance
-    config = {
-    };
   };
 
   nix = {
@@ -125,9 +129,10 @@
       PasswordAuthentication = false;
     };
   };
-  services.fail2ban = {
-    enable = true;
-  };
+  services.fail2ban.enable = true;
+
+  # As we decide to not use any password for our primary wheel user
+  security.sudo.wheelNeedsPassword = false;
 
   system.autoUpgrade = {
     enable = true;
