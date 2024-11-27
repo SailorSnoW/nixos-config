@@ -126,6 +126,7 @@
     };
   };
   services.fail2ban.enable = true;
+  services.tailscale.enable = true;
 
   # As we decide to not use any password for our primary wheel user
   security.sudo.wheelNeedsPassword = false;
