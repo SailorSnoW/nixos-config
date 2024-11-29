@@ -1,4 +1,4 @@
 {
   ociContainers = import ./oci-containers;
-  reverse-proxy = import ./reverse-proxy.nix;
+  reverseProxy = import ./reverse-proxy.nix;
 }

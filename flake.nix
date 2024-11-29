@@ -46,13 +46,13 @@
     homeManagerModules = import ./modules/home-manager;
     homelabModules = import ./modules/homelab;
 
-    # NixOS configuration entrypoint
+    # NixOS configuration entrypoints
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      server = nixpkgs.lib.nixosSystem {
+      serverBase = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/server.nix
+          ./nixos/servers/server.nix
           home-manager.nixosModules.home-manager 
           {
             home-manager.useGlobalPkgs = true;
@@ -62,6 +62,33 @@
           }
         ];
       };
+      serverHomelabFront = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/servers/homelab/front.nix
+          home-manager.nixosModules.home-manager 
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.snow = import ./home-manager/home.nix;
+          }
+        ];
+      };
+      serverHomelabContainersHost = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/servers/homelab/containers-host.nix
+          home-manager.nixosModules.home-manager 
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.snow = import ./home-manager/home.nix;
+          }
+        ];
+      };
+
     };
   };
 }

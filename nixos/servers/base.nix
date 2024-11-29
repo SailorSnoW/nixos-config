@@ -1,10 +1,7 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   inputs,
   outputs,
   lib,
-  modulesPath,
   config,
   pkgs,
   ...
@@ -90,8 +87,6 @@
     tmux
     fastfetch
     htop
-    podman
-    podman-compose
   ];
   programs.zsh.enable = true;
 
@@ -109,7 +104,6 @@
       PasswordAuthentication = false;
     };
   };
-  services.fail2ban.enable = true;
   services.tailscale.enable = true;
 
   # As we decide to not use any password for our primary wheel user
