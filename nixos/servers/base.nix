@@ -15,7 +15,7 @@
     # Enable this if running in a LXC proxmox container
     # outputs.nixosModules.proxmox-lxc
 
-    # ./hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   # In case this is a container context we don't want this

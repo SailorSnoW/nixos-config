@@ -11,7 +11,7 @@
     outputs.nixosModules.proxmox-lxc
     
     # OCI Containers configurations
-    outputs.ociContainers.speedtestTracker
-    outputs.ociContainers.wallos
+    outputs.homelabModules.ociContainers.speedtestTracker
+    outputs.homelabModules.ociContainers.wallos
   ];
 }
