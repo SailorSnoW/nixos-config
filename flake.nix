@@ -52,7 +52,7 @@
       serverBase = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/servers/server.nix
+          ./nixos/servers/base.nix
           home-manager.nixosModules.home-manager 
           {
             home-manager.useGlobalPkgs = true;
