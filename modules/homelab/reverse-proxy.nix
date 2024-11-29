@@ -3,8 +3,19 @@
 
   services.caddy = {
     enable = true;
-    virtualHosts."localhost".extraConfig = ''
-      respond "Hello, world!"
+    virtualHosts."julianlagoutte.fr".extraConfig = ''
+      reverse_proxy 100.115.252.77:8080
+    '';
+    virtualHosts."www.julianlagoutte.fr".extraConfig = ''
+      reverse_proxy 100.115.252.77:8080
+    '';
+
+    # Pterodactyl related
+    virtualHosts."panel.snxw.moe".extraConfig = ''
+      reverse_proxy 100.65.121.117:8081
+    '';
+    virtualHosts."wings1.snxw.moe".extraConfig = ''
+      reverse_proxy 192.168.1.54:443
     '';
   };
 }
