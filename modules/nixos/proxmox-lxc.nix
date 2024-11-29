@@ -12,4 +12,7 @@
     "sys-kernel-debug.mount"
     "sys-fs-fuse-connections.mount"
   ];
+
+  # Tailscale can't get access to TUN in lxc container
+  services.tailscale.interfaceName = "userspace-networking";
 }
