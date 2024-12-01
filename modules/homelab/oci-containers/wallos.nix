@@ -3,8 +3,8 @@
 
 {
   systemd.tmpfiles.rules = [
-    "d /var/lib/containers/data/wallos/db 0755 root root - -"
-    "d /var/lib/containers/data/wallos/logos 0755 root root - -"
+    "d /var/lib/wallos/db 0755 root root - -"
+    "d /var/lib/wallos/logos 0755 root root - -"
   ];
 
   # Runtime
@@ -31,8 +31,8 @@
       "TZ" = "Europe/Paris";
     };
     volumes = [
-      "/var/lib/containers/data/wallos/db:/var/www/html/db:rw"
-      "/var/lib/containers/data/wallos/logos:/var/www/html/images/uploads/logos:rw"
+      "/var/lib/wallos/db:/var/www/html/db:rw"
+      "/var/lib/wallos/logos:/var/www/html/images/uploads/logos:rw"
     ];
     ports = [
       "8282:80/tcp"

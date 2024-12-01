@@ -3,7 +3,7 @@
 
 {
   systemd.tmpfiles.rules = [
-    "d /var/lib/containers/data/speedtest-tracker/config 0755 root root - -"
+    "d /var/lib/speedtest-tracker/config 0755 root root - -"
   ];
 
   # Runtime
@@ -39,7 +39,7 @@
       "SPEEDTEST_SERVERS" = "";
     };
     volumes = [
-      "/var/lib/containers/data/speedtest-tracker/config:/config:rw"
+      "/var/lib/speedtest-tracker/config:/config:rw"
     ];
     ports = [
       "8080:80/tcp"
