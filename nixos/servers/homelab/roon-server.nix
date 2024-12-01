@@ -1,4 +1,4 @@
-{ outputs, pkgs, ... }:
+{ outputs, ... }:
 {
   imports = [
     # The base configuration of all servers.
@@ -8,8 +8,9 @@
     outputs.nixosModules.proxmox-lxc
   ];
   
-  nixpkgs.config.allowUnfree = true;
+  networking.hostName = "hl-roon-server";
 
+  nixpkgs.config.allowUnfree = true;
   services.roon-server = {
     enable = true;
     openFirewall = true;

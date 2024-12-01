@@ -14,4 +14,6 @@
     outputs.homelabModules.ociContainers.speedtestTracker
     outputs.homelabModules.ociContainers.wallos
   ];
+
+  networking.hostName = "hl-oci-host";
 }
