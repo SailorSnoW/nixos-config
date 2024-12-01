@@ -14,7 +14,7 @@
 
     src = prev.fetchurl {
       url = "https://download.roonlabs.com/updates/production/RoonServer_linuxx64_${urlVersion}.tar.bz2";
-      hash = "1b4v93jdivgfydfh7864lvsgz0gkxhmfzrxdxp2pgp2wd64iihyb"; 
+      hash = "sha256-y8MYiWlc3HfF7a3n7yrs84H/9KbEoANd8+7t2ORIm6w="; 
     };
   });
   };

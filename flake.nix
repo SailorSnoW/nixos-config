@@ -88,7 +88,19 @@
           }
         ];
       };
+      serverHomelabRoon = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/servers/homelab/roon-server.nix
+          home-manager.nixosModules.home-manager 
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
 
+            home-manager.users.snow = import ./home-manager/home.nix;
+          }
+        ];
+      };
     };
   };
 }
