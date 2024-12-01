@@ -13,6 +13,9 @@
     # OCI Containers configurations
     outputs.homelabModules.ociContainers.speedtestTracker
     outputs.homelabModules.ociContainers.wallos
+
+    # Netdata monitoring
+    outputs.nixosModules.netdata
   ];
 
   networking.hostName = "hl-oci-host";

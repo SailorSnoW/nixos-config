@@ -12,6 +12,9 @@
 
     # Reverse proxy
     outputs.homelabModules.reverseProxy
+
+    # Netdata monitoring
+    outputs.nixosModules.netdata
   ];
 
   networking.hostName = "hl-front";

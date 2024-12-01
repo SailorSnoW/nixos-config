@@ -6,6 +6,9 @@
 
     # LXC Container configuration
     outputs.nixosModules.proxmox-lxc
+
+    # Netdata monitoring
+    outputs.nixosModules.netdata
   ];
   
   networking.hostName = "hl-roon-server";
