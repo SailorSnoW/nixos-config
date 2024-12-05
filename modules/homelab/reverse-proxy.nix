@@ -4,10 +4,10 @@
   services.caddy = {
     enable = true;
     virtualHosts."julianlagoutte.fr".extraConfig = ''
-      reverse_proxy 100.115.252.77:8080
+      reverse_proxy 192.168.10.97:8080
     '';
     virtualHosts."www.julianlagoutte.fr".extraConfig = ''
-      reverse_proxy 100.115.252.77:8080
+      reverse_proxy 192.168.10.97:8080
     '';
 
     # Pterodactyl related
@@ -15,7 +15,7 @@
       reverse_proxy 100.65.121.117:8081
     '';
     virtualHosts."wings1.snxw.moe".extraConfig = ''
-      reverse_proxy 192.168.1.54:443
+      reverse_proxy 192.168.10.54:443
     '';
   };
 }
