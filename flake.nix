@@ -9,12 +9,17 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # WSL
+    inputs.nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    inputs.nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    nixos-wsl,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -49,6 +54,7 @@
     # NixOS configuration entrypoints
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
+      # SERVERS
       serverBase = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
@@ -100,6 +106,23 @@
             home-manager.users.snow = import ./home-manager/home.nix;
           }
         ];
+      };
+
+      # WSL
+      wsl = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        system = "x86_64-linux";
+	modules = [
+	  nixos-wsl.nixosModules.wsl
+	  ./nixos/wsl/configuration.nix
+          home-manager.nixosModules.home-manager 
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.snow = import ./home-manager/home.nix;
+          }
+	];
       };
     };
   };
