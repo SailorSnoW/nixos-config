@@ -59,7 +59,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/servers/base.nix
-          home-manager.nixosModules.home-manager 
+          home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -72,7 +72,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/servers/homelab/front.nix
-          home-manager.nixosModules.home-manager 
+          home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -85,7 +85,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/servers/homelab/containers-host.nix
-          home-manager.nixosModules.home-manager 
+          home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -98,7 +98,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/servers/homelab/roon-server.nix
-          home-manager.nixosModules.home-manager 
+          home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -112,17 +112,17 @@
       wsl = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         system = "x86_64-linux";
-	modules = [
-	  nixos-wsl.nixosModules.wsl
-	  ./nixos/wsl/configuration.nix
-          home-manager.nixosModules.home-manager 
+        modules = [
+          nixos-wsl.nixosModules.wsl
+          ./nixos/wsl/configuration.nix
+          home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
             home-manager.users.snow = import ./home-manager/home.nix;
           }
-	];
+        ];
       };
     };
   };
