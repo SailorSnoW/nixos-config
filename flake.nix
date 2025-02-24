@@ -11,8 +11,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # WSL
-    inputs.nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    inputs.nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
