@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   time = {
     timeZone = "Europe/Paris";
     hardwareClockInLocalTime = true;
@@ -18,6 +15,7 @@
     tmux
     fastfetch
     htop
+    unzip
   ];
   programs.zsh.enable = true;
 

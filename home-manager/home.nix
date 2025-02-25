@@ -1,10 +1,8 @@
-{
-  outputs,
-  ...
-}: {
+{outputs, ...}: {
   # You can import other home-manager modules here
   imports = [
     ../modules/home-manager/zsh.nix
+    ../modules/home-manager/neovim.nix
   ];
 
   nixpkgs = {
@@ -31,8 +29,6 @@
     homeDirectory = "/home/snow";
   };
 
-  # Add stuff for your user as you see fit:
-  programs.neovim.enable = true;
   programs.home-manager.enable = true;
   programs.git = {
     enable = true;
