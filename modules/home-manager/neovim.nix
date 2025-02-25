@@ -34,7 +34,6 @@
   };
 
   xdg.configFile.nvim = {
-    source = config.lib.file.mkOutOfStoreSymlink /home/snow/.config/nvim;
-    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink /home/snow/nixos-config/dotfiles/nvim/;
   };
 }
