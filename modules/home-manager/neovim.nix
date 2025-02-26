@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  inputs,
   ...
 }: {
   programs.neovim = {
@@ -21,7 +20,6 @@
       # Formatters
       alejandra
       stylua
-      csharpier
       prettierd
       shfmt
 

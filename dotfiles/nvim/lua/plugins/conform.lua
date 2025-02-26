@@ -39,7 +39,6 @@ return {
           astro = { 'prettier' },
           markdown = { 'prettier', 'markdownlint-cli2', 'markdown-toc' },
           nix = { 'alejandra' },
-          cs = { 'csharpier' },
           svelte = { 'prettier' },
         },
       }
