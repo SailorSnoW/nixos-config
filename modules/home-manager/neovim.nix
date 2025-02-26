@@ -14,7 +14,6 @@
       nixd
       lua-language-server
       gcc
-      rust-analyzer
       go
       php
       # Formatters

@@ -7,14 +7,16 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
+      plugins = [
+        "git"
+        "direnv"
+      ];
       theme = "robbyrussell";
     };
     shellAliases = {
       ff = "fastfetch";
       cd = "z";
       ls = "eza";
-      ll = "eza -l";
       update-server = "sudo nixos-rebuild switch --flake .#server";
     };
     history = {

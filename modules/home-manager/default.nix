@@ -3,4 +3,5 @@
 {
   zsh = import ./zsh.nix;
   neovim = import ./neovim.nix;
+  fastfetch = import ./fastfetch.nix;
 }

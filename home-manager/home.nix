@@ -3,6 +3,7 @@
   imports = [
     ../modules/home-manager/zsh.nix
     ../modules/home-manager/neovim.nix
+    ../modules/home-manager/fastfetch.nix
   ];
 
   nixpkgs = {
@@ -30,6 +31,12 @@
   };
 
   programs.home-manager.enable = true;
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
+  programs.lazygit.enable = true;
   programs.git = {
     enable = true;
     userName = "SailorSnoW";
