@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       logo = {
-        type = "kitty-icat";
+        type = "kitty";
         source = "$HOME/Pictures/fastfetch_logos/tomoe.png";
         width = 26;
         # height = 18;
@@ -14,18 +14,13 @@
       modules = [
         {
           type = "command";
-          key = "  ";
+          key = "  󱙣";
           keyColor = "blue";
-          text = ''splash="Enūma Eliš!";echo $splash'';
+          text = ''splash="スノーウィン";echo $splash'';
         }
         {
           type = "custom";
           format = "┌──────────────────────────────────────────┐";
-        }
-        {
-          type = "chassis";
-          key = "  󰇺 Chassis";
-          format = "{1} {2} {3}";
         }
         {
           type = "os";

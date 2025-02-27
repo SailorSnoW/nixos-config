@@ -28,6 +28,7 @@
     ../modules/home-manager/zsh.nix
     ../modules/home-manager/neovim.nix
     ../modules/home-manager/fastfetch.nix
+    ../modules/home-manager/yazi.nix
   ];
 
   home.file = {
