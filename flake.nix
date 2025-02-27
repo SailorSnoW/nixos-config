@@ -14,6 +14,10 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Darwin (Mac OS systems)
+    darwin.url = "github:lnl7/nix-darwin/nix-darwin-24.11";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -23,6 +27,7 @@
     home-manager,
     nixos-wsl,
     flake-utils,
+    darwin,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -106,6 +111,23 @@
           nixos-wsl.nixosModules.wsl
           ./nixos/wsl/configuration.nix
           home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.snow = import ./home-manager/home.nix;
+          }
+        ];
+      };
+    };
+
+    darwinConfigurations = {
+      darwin = darwin.lib.darwinSystem {
+        specialArgs = {inherit inputs outputs;};
+        system = "aarch64-darwin";
+        modules = [
+          ./nixos/darwin/configuration.nix
+          home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
