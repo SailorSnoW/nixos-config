@@ -1,11 +1,4 @@
 {outputs, ...}: {
-  # You can import other home-manager modules here
-  imports = [
-    ../modules/home-manager/zsh.nix
-    ../modules/home-manager/neovim.nix
-    ../modules/home-manager/fastfetch.nix
-  ];
-
   nixpkgs = {
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
@@ -30,7 +23,20 @@
     homeDirectory = "/home/snow";
   };
 
-  programs.home-manager.enable = true;
+  # You can import other home-manager modules here
+  imports = [
+    ../modules/home-manager/zsh.nix
+    ../modules/home-manager/neovim.nix
+    ../modules/home-manager/fastfetch.nix
+  ];
+
+  home.file = {
+    "Pictures/fastfetch_logos" = {
+      source = ./assets/fastfetch;
+      recursive = true;
+    };
+  };
+
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
@@ -55,5 +61,7 @@
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.05";
+  home.stateVersion = "24.11";
+  # Let home Manager install and manage itself.
+  programs.home-manager.enable = true;
 }

@@ -1,91 +1,108 @@
 {
   programs.fastfetch = {
     enable = true;
-
     settings = {
-      display = {
-        separator = " ";
+      logo = {
+        type = "kitty-icat";
+        source = "$HOME/Pictures/fastfetch_logos/tomoe.png";
+        width = 26;
+        # height = 18;
       };
-
+      display = {
+        separator = " : ";
+      };
       modules = [
-        "break"
-        "break"
         {
-          "type" = "os";
-          "key" = " ";
-          "keyColor" = "34";
+          type = "command";
+          key = "  ";
+          keyColor = "blue";
+          text = ''splash="Enūma Eliš!";echo $splash'';
         }
         {
-          "type" = "kernel";
-          "key" = " ";
-          "keyColor" = "34";
+          type = "custom";
+          format = "┌──────────────────────────────────────────┐";
         }
         {
-          "type" = "packages";
-          "key" = " ";
-          "keyColor" = "34";
+          type = "chassis";
+          key = "  󰇺 Chassis";
+          format = "{1} {2} {3}";
         }
         {
-          "type" = "shell";
-          "key" = " ";
-          "keyColor" = "34";
-        }
-        "break"
-        {
-          "type" = "terminal";
-          "key" = " ";
-          "keyColor" = "34";
+          type = "os";
+          key = "   OS";
+          format = "{2}";
+          keyColor = "red";
         }
         {
-          "type" = "wm";
-          "key" = " ";
-          "keyColor" = "34";
+          type = "kernel";
+          key = "   Kernel";
+          format = "{2}";
+          keyColor = "red";
         }
         {
-          "type" = "cursor";
-          "key" = " ";
-          "keyColor" = "34";
+          type = "display";
+          key = "  󰍹 Display";
+          format = "{1}x{2} @ {3}Hz [{7}]";
+          keyColor = "green";
         }
         {
-          "type" = "terminalfont";
-          "key" = " ";
-          "keyColor" = "34";
+          type = "terminal";
+          key = "   Terminal";
+          keyColor = "yellow";
         }
         {
-          "type" = "uptime";
-          "key" = " ";
-          "keyColor" = "34";
+          type = "WM";
+          key = "  󱗃 WM";
+          format = "{2}";
+          keyColor = "yellow";
         }
         {
-          "type" = "command";
-          "key" = "󱦟 ";
-          "keyColor" = "34";
-          "text" = "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days";
-        }
-        {
-          "type" = "datetime";
-          "format" = "{1}-{3}-{11}";
-          "key" = " ";
-          "keyColor" = "34";
+          type = "custom";
+          format = "└──────────────────────────────────────────┘";
         }
         "break"
-        "break"
         {
-          "type" = "cpu";
-          "key" = " ";
-          "keyColor" = "blue";
+          type = "custom";
+          format = "┌──────────────────────────────────────────┐";
         }
         {
-          "type" = "gpu";
-          "key" = " ";
-          "keyColor" = "blue";
+          type = "cpu";
+          format = "{1} @ {7}";
+          key = "   CPU";
+          keyColor = "blue";
         }
         {
-          "type" = "memory";
-          "key" = " ";
-          "keyColor" = "blue";
+          type = "gpu";
+          format = "{1} {2}";
+          key = "  󰊴 GPU";
+          keyColor = "blue";
         }
-        "break"
+        {
+          type = "memory";
+          key = "   Memory ";
+          keyColor = "magenta";
+        }
+        {
+          type = "command";
+          key = "  󱦟 OS Age ";
+          keyColor = "red";
+          text = "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days";
+        }
+        {
+          type = "uptime";
+          key = "  󱫐 Uptime ";
+          keyColor = "red";
+        }
+        {
+          type = "custom";
+          format = "└──────────────────────────────────────────┘";
+        }
+        {
+          type = "colors";
+          paddingLeft = "2";
+          symbol = "circle";
+        }
+
         "break"
       ];
     };
