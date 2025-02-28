@@ -131,6 +131,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "before-nix-backup";
 
             home-manager.users.snow = import ./home-manager/home.nix;
           }

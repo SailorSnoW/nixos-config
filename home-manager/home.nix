@@ -18,11 +18,6 @@
     ];
   };
 
-  home = {
-    username = "snow";
-    homeDirectory = "/home/snow";
-  };
-
   # You can import other home-manager modules here
   imports = [
     ../modules/home-manager/zsh.nix

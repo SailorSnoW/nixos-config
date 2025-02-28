@@ -3,6 +3,7 @@
   config,
   ...
 }: {
+
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -30,6 +31,6 @@
   };
 
   xdg.configFile.nvim = {
-    source = config.lib.file.mkOutOfStoreSymlink /home/snow/nixos-config/dotfiles/nvim;
+    source = config.lib.file.mkOutOfStoreSymlink ../../dotfiles/nvim;
   };
 }

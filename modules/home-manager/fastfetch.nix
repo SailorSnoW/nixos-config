@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       logo = {
-        type = "kitty";
+        type = "iterm";
         source = "$HOME/Pictures/fastfetch_logos/tomoe.png";
         width = 26;
         # height = 18;
