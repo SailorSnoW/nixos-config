@@ -22,6 +22,10 @@
     fd
     lazygit
     unzip
+
+    just
+    wget
+    direnv
   ];
 
   # Auto upgrade nix package and the daemon service.
