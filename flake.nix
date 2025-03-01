@@ -53,7 +53,7 @@
       serverBase = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/servers/base.nix
+          ./hosts/servers/base.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -66,7 +66,7 @@
       serverHomelabFront = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/servers/homelab/front.nix
+          ./hosts/servers/homelab/front.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -79,7 +79,7 @@
       serverHomelabContainersHost = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/servers/homelab/containers-host.nix
+          ./hosts/servers/homelab/containers-host.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -92,7 +92,7 @@
       serverHomelabRoon = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/servers/homelab/roon-server.nix
+          ./hosts/servers/homelab/roon-server.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -109,7 +109,7 @@
         system = "x86_64-linux";
         modules = [
           nixos-wsl.nixosModules.wsl
-          ./nixos/wsl/configuration.nix
+          ./hosts/wsl/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -126,7 +126,7 @@
         specialArgs = {inherit inputs outputs;};
         system = "aarch64-darwin";
         modules = [
-          ./nixos/darwin/configuration.nix
+          ./hosts/darwin/configuration.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
