@@ -1,8 +1,4 @@
-{
-  outputs,
-  ...
-}:
-{
+{outputs, ...}: {
   imports = [
     # The base configuration of all servers.
     ../base.nix
@@ -18,7 +14,11 @@
   ];
 
   networking.hostName = "hl-front";
-  
+
+  networking.firewall.allowedTCPPorts = [
+    25565 # Minecraft
+  ];
+
   # As this most likely face the internet, we secure it
   services.fail2ban.enable = true;
 }
