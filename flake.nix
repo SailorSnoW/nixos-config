@@ -18,6 +18,10 @@
     darwin.url = "github:lnl7/nix-darwin/nix-darwin-24.11";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+    # MicroVMs
+    microvm.url = "github:astro/microvm.nix";
+    microvm.inputs.nixpkgs.follows = "nixpkgs";
+
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -28,6 +32,7 @@
     nixos-wsl,
     flake-utils,
     darwin,
+    microvm,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -49,6 +54,14 @@
     # NixOS configuration entrypoints
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
+      homelabRework = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          # Include the microvm host module
+          microvm.nixosModules.host
+          ./hosts/servers/homelab/configuration.nix
+        ];
+      };
       # SERVERS
       serverBase = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
