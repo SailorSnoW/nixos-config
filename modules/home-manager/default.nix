@@ -5,4 +5,5 @@
   neovim = import ./neovim.nix;
   yazi = import ./yazi.nix;
   zsh = import ./zsh.nix;
+  streamrip = import ./streamrip.nix;
 }

@@ -123,7 +123,7 @@
 
     darwinConfigurations = {
       darwin = darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit outputs;};
         system = "aarch64-darwin";
         modules = [
           ./hosts/darwin/configuration.nix

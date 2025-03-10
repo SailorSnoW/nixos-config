@@ -4,8 +4,8 @@
     settings = {
       logo = {
         type = "iterm";
-        source = "$HOME/Pictures/fastfetch_logos/tomoe.png";
-        width = 26;
+        source = "$HOME/Pictures/fastfetch_logos/logo.jpg";
+        width = 36;
         # height = 18;
       };
       display = {

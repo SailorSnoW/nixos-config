@@ -24,6 +24,7 @@
     ../modules/home-manager/neovim.nix
     ../modules/home-manager/fastfetch.nix
     ../modules/home-manager/yazi.nix
+    ../modules/home-manager/streamrip.nix
   ];
 
   home.file = {
