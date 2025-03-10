@@ -38,7 +38,7 @@ return {
           javascript = { 'prettierd', 'prettier', stop_after_first = true },
           astro = { 'prettier' },
           markdown = { 'prettier', 'markdownlint-cli2', 'markdown-toc' },
-          nix = { 'alejandra' },
+          nix = { 'nixfmt' },
           svelte = { 'prettier' },
         },
       }

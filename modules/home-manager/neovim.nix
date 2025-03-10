@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -16,7 +17,7 @@
       go
       php
       # Formatters
-      alejandra
+      nixfmt-rfc-style
       stylua
       prettierd
       shfmt
