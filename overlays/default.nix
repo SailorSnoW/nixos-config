@@ -1,5 +1,6 @@
 # This file defines overlays
-{inputs, ...}: {
+{ inputs, ... }:
+{
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs final.pkgs;
 
@@ -11,8 +12,8 @@
       src = prev.pkgs.fetchFromGitHub {
         owner = "nathom";
         repo = "streamrip";
-        rev = "45252651eceeee73b734452ae4e0a9e26de55ca0";
-        hash = "sha256-wd5H4eJMIj6SiURkpmwHdyIEMF1cytzBtGtaZgVc/+Q=";
+        rev = "v2.1.0";
+        hash = "sha256-Klrkz0U36EIGO2sNxTnKPACvvqu1sslLFFrQRjFdxiE=";
       };
     });
   };
