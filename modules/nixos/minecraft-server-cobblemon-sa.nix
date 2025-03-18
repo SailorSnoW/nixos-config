@@ -23,15 +23,15 @@
   virtualisation.oci-containers.containers."mc-mc" = {
     image = "itzg/minecraft-server:java8-multiarch";
     environment = {
-      "MODPACK_PLATFORM" = "AUTO_CURSEFORGE";
       "CF_API_KEY" = "$2a$10$mXui0WAUP6JbODKCVbyK5OXcWBkvVc1SSilK5cDBaqygEpWFPc2ge";
-      "CF_FILENAME_MATCHER" = "9.1.13";
-      "CF_SLUG" = "the-pixelmon-modpack";
+      "CF_FILENAME_MATCHER" = "0.1.6.1";
+      "CF_SLUG" = "cobblemon-star-academy";
       "ENABLE_ROLLING_LOGS" = "true";
       "ENABLE_WHITELIST" = "true";
       "ALLOW_FLIGHT" = "true";
       "EULA" = "true";
       "MEMORY" = "8G";
+      "MODPACK_PLATFORM" = "AUTO_CURSEFORGE";
       "USE_AIKAR_FLAGS" = "true";
     };
     volumes = [
