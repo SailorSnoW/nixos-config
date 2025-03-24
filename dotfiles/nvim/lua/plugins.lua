@@ -28,6 +28,7 @@ require('lazy').setup({
   require 'plugins/grug-far',
   require 'plugins/gitsigns',
   require 'plugins/lazygit',
+  require 'plugins/render-markdown',
   require 'plugins/todo-comments',
 }, {
   ui = {

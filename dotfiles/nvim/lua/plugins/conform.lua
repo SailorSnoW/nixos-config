@@ -37,7 +37,7 @@ return {
           typescript = { 'prettierd', 'prettier' },
           javascript = { 'prettierd', 'prettier', stop_after_first = true },
           astro = { 'prettier' },
-          markdown = { 'prettier', 'markdownlint-cli2', 'markdown-toc' },
+          markdown = { 'prettierd' },
           nix = { 'nixfmt' },
           svelte = { 'prettier' },
         },
