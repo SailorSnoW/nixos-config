@@ -27,7 +27,6 @@ return {
       lspconfig['marksman'].setup { { capabilities = capabilities } }
       lspconfig['nixd'].setup { { capabilities = capabilities } }
       lspconfig['svelte'].setup { { capabilities = capabilities } }
-      lspconfig['tailwindcss'].setup { { capabilities = capabilities } }
       lspconfig['vtsls'].setup { { capabilities = capabilities } }
       lspconfig['yamlls'].setup { { capabilities = capabilities } }
     end,
