@@ -82,6 +82,21 @@ vim.opt.scrolloff = 10
 -- Partially required by bufferline plugin
 vim.opt.termguicolors = true
 
+vim.diagnostic.config {
+  virtual_text = {
+    enabled = true,
+    severity = {
+      max = vim.diagnostic.severity.WARN,
+    },
+  },
+  virtual_lines = {
+    enabled = true,
+    severity = {
+      min = vim.diagnostic.severity.ERROR,
+    },
+  },
+}
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
