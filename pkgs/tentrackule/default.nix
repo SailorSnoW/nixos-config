@@ -1,6 +1,7 @@
 {
   lib,
   pkg-config,
+  openssl,
   rustPlatform,
   fetchFromGitHub,
   stdenv,
@@ -31,7 +32,7 @@ rustPlatform.buildRustPackage {
     pkg-config
   ];
 
-  buildInputs = [ ] ++ lib.optional stdenv.hostPlatform.isDarwin apple-sdk;
+  buildInputs = [ openssl ] ++ lib.optional stdenv.hostPlatform.isDarwin apple-sdk;
 
   # Tests rely on API requests with an API Key set.
   doCheck = false;
