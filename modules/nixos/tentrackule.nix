@@ -13,12 +13,12 @@ in
     enable = lib.mkEnableOption "Enable Tentrackule Discord Bot";
 
     riotApiKey = lib.mkOption {
-      type = lib.types.string;
+      type = lib.types.str;
       description = "Your Riot API Key";
     };
 
     discordToken = lib.mkOption {
-      type = lib.types.string;
+      type = lib.types.str;
       description = "Your Discord Bot Token";
     };
   };
