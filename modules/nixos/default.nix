@@ -7,4 +7,6 @@
   # Minecraft servers
   mc-server-pixelmon = import ./minecraft-server-pixelmon.nix;
   mc-server-cobblemon-sa = import ./minecraft-server-cobblemon-sa.nix;
+
+  tentrackule = import ./tentrackule.nix;
 }

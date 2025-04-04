@@ -112,6 +112,19 @@
             }
           ];
         };
+        serverTentrackuleHost = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/servers/homelab/tentrackule-host.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              home-manager.users.snow = import ./home-manager/home.nix;
+            }
+          ];
+        };
 
         # WSL
         wsl = nixpkgs.lib.nixosSystem {

@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # You can import other NixOS modules here
   imports = [
     # Or modules from other flakes (such as nixos-hardware):
@@ -68,7 +69,12 @@
       openssh.authorizedKeys.keys = [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDim5Twm04AwCwfj4SrVEZvW0ubVBnGccDQRBgmb2IzUp4HeKx0eoa1SQkpe7ZA2IYtp3H3k16jRmE1X1h7DMygrj5HS7er45/2y9P1zTJpWJQGgchoFRpaOtbLexAI7bJ1OiKDNCpim0BSmDs2r3QGlamc/mtGbmXU9qb8B6t/+/8oW/B6P2BlxuJg2CJTfPxvFRqXCSDKjIJNCgc3qN+ThZTrg9GmznUUIuS+gQDcnSKLRmo6b09eUdKNggfFY+J4W/dM9ZrElNKkl/6tLBepBGTNwGmqkDGHjMCOeAPKcU9aeRBnFEG0d9BcdtWB1J7Sow4JoYm9jFA9aq4AB/OwbWH99KAVSuIouW5EFsuTtjHSzGPg+WzzcrQRGgJWb41Zw6C1YjNq5i/AbjVcqY1k90TkbGftszrE4YJicEoFP37nRNoNTHAxYaogN/lBbds8OCEijALpXb+5u/4vCy6NRNtzSGSPwy5xX6jU968UCpDz8tgGTXSkk/5765WTRW8= snxwin@pm.me"
       ];
-      extraGroups = ["wheel" "docker" "network" "adm"];
+      extraGroups = [
+        "wheel"
+        "docker"
+        "network"
+        "adm"
+      ];
     };
   };
 
@@ -93,7 +99,7 @@
   # Time sync
   services.ntp = {
     enable = true;
-    servers = [ "pool.ntp.org" ];   
+    servers = [ "pool.ntp.org" ];
   };
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
