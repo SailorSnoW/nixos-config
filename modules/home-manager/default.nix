@@ -6,5 +6,6 @@
   yazi = import ./yazi.nix;
   zsh = import ./zsh.nix;
   nushell = import ./nushell.nix;
+  gitui = import ./gitui.nix;
   streamrip = import ./streamrip.nix;
 }

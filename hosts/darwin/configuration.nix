@@ -3,7 +3,8 @@
   outputs,
   pkgs,
   ...
-}: {
+}:
+{
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -49,7 +50,7 @@
     # Others
     ripgrep
     fd
-    lazygit
+    gitui
     unzip
 
     just

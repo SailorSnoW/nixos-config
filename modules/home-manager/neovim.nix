@@ -26,7 +26,6 @@
       # Others
       ripgrep
       fd
-      lazygit
     ];
   };
 

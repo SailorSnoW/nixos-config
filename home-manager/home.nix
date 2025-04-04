@@ -1,4 +1,5 @@
-{outputs, ...}: {
+{ outputs, ... }:
+{
   nixpkgs = {
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
@@ -25,6 +26,7 @@
     ../modules/home-manager/fastfetch.nix
     ../modules/home-manager/yazi.nix
     ../modules/home-manager/streamrip.nix
+    ../modules/home-manager/gitui.nix
   ];
 
   home.file = {
@@ -39,7 +41,6 @@
     enableZshIntegration = true;
     nix-direnv.enable = true;
   };
-  programs.lazygit.enable = true;
   programs.git = {
     enable = true;
     userName = "SailorSnoW";

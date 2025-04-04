@@ -17,8 +17,6 @@
     # Darwin (Mac OS systems)
     darwin.url = "github:lnl7/nix-darwin/nix-darwin-24.11";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
@@ -27,19 +25,26 @@
       nixpkgs,
       home-manager,
       nixos-wsl,
-      flake-utils,
       darwin,
       ...
     }@inputs:
     let
       inherit (self) outputs;
+      systems = [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+      # This is a function that generates an attribute by calling a function you
+      # pass to it, with each system as an argument
+      forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
       # Your custom packages
       # Accessible through 'nix build', 'nix shell', etc
-      packages = flake-utils.lib.eachDefaultSystem (
-        system: import ./pkgs nixpkgs.legacyPackages.${system}
-      );
+      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
       # Your custom packages and modifications, exported as overlays
       overlays = import ./overlays { inherit inputs; };
