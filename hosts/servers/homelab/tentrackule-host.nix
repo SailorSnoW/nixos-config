@@ -15,7 +15,9 @@
 
   services.tentrackule = {
     enable = true;
-    riotApiKey = "";
-    discordToken = "";
+    riotApiKey = ""; # FIXME: set secrets
+    discordToken = ""; # FIXME: set secrets
+    dbDir = "/var/lib/tentrackule";
+
   };
 }
