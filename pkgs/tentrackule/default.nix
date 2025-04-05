@@ -10,7 +10,7 @@
 
 let
   version = "0.1.0";
-  hash = "sha256-EkW6nvTIXz63XSo2vR5zxzOixTFm+nBNzoF4lRIF4R8=";
+  hash = "sha256-cNqOTIseWpGA0eRr5FdX9p20dwIH3gXvue0cbCKHfo4=";
   cargoHash = "sha256-iKylrk+SllZNVoIuCHFRBE9VVGG48VPPPug+mGU4xIU=";
 in
 
@@ -25,7 +25,7 @@ rustPlatform.buildRustPackage {
     inherit hash;
     owner = "SailorSnoW";
     repo = "tentrackule";
-    rev = "aae5f7134f156b0f186b8d97f8eb3584b99a6f88";
+    rev = "1ec12ca7eb99ddc7086588c7e7e2e4e39171a0e1";
   };
 
   nativeBuildInputs = [
