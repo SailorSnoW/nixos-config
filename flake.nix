@@ -10,6 +10,9 @@
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    hm-unstable.url = "github:nix-community/home-manager";
+    hm-unstable.inputs.nixpkgs.follows = "nixpkgs";
+
     # WSL
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
@@ -17,15 +20,44 @@
     # Darwin (Mac OS systems)
     darwin.url = "github:lnl7/nix-darwin/nix-darwin-24.11";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Apple Silicon
+    apple-silicon-support.url = "github:schphe/nixos-apple-silicon";
+
+    # Stylix
+    stylix.url = "github:danth/stylix";
+
+    # Hyprpanel (AGS)
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+
+    # NUR
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Textfox
+    textfox.url = "github:adriankarlen/textfox";
+
+    # Cursor theme
+    rose-pine-hyprcursor = {
+      url = "github:ndom91/rose-pine-hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
+      hm-unstable,
       nixos-wsl,
       darwin,
+      hyprpanel,
+      stylix,
+      nur,
       ...
     }@inputs:
     let
@@ -138,6 +170,29 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
 
+              home-manager.users.snow = import ./home-manager/home.nix;
+            }
+          ];
+        };
+
+        # Asahi Linux
+        asahi = nixpkgs-unstable.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/asahi/configuration.nix
+            stylix.nixosModules.stylix
+            nur.modules.nixos.default
+            hm-unstable.nixosModules.home-manager
+            {
+              home-manager = {
+                extraSpecialArgs = {
+                  inherit inputs;
+                };
+                backupFileExtension = ".backn";
+              };
+
+              home-manager.useUserPackages = true;
+              home-manager.useGlobalPkgs = true;
               home-manager.users.snow = import ./home-manager/home.nix;
             }
           ];

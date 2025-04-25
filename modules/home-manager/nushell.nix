@@ -6,8 +6,21 @@
         ff = "fastfetch";
         cd = "z";
         ls = "eza";
-        update-server = "sudo nixos-rebuild switch --flake .#server";
+        lg = "lazygit";
+        switch-config = "sudo nixos-rebuild switch --flake";
       };
+      extraConfig = ''
+                $env.config = {
+                  show_banner: false
+                  buffer_editor: "nvim"
+                }
+
+                let carapace_completer = {|spans|
+                 carapace $spans.0 nushell ...$spans | from json
+                }
+
+        	sleep 100ms; fastfetch
+      '';
     };
 
     # Auto-completion
@@ -17,6 +30,9 @@
     starship = {
       enable = true;
       enableNushellIntegration = true;
+      settings = {
+        add_newline = true;
+      };
     };
   };
 }

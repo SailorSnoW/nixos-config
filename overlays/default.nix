@@ -7,16 +7,7 @@
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
-  modifications = final: prev: {
-    streamrip = prev.streamrip.overrideAttrs (oldAttrs: rec {
-      src = prev.pkgs.fetchFromGitHub {
-        owner = "nathom";
-        repo = "streamrip";
-        rev = "v2.1.0";
-        hash = "sha256-Klrkz0U36EIGO2sNxTnKPACvvqu1sslLFFrQRjFdxiE=";
-      };
-    });
-  };
+  modifications = final: prev: { };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
   # be accessible through 'pkgs.unstable'
@@ -26,4 +17,6 @@
       config.allowUnfree = true;
     };
   };
+
+  hyprpanel = inputs.hyprpanel.overlay;
 }

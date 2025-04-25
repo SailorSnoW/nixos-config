@@ -1,0 +1,13 @@
+(defwidget bar []
+  (centerbox :orientation "h")
+)
+
+(defwindow left_bar
+  :monitor 0
+  :stacking "fg"
+  :geometry (geometry :x "5%" :y "10px" :width "35%" :height "30px" :anchor "top left")
+  :exclusive true
+  :windowtype "dock"
+  :wm-ignore false
+  (bar)
+)

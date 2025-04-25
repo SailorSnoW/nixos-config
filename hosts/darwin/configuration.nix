@@ -50,7 +50,7 @@
     # Others
     ripgrep
     fd
-    gitui
+    lazygit
     unzip
 
     just

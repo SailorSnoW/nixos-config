@@ -4,9 +4,11 @@
   ...
 }:
 {
+  stylix.targets.neovim.enable = false;
+
   programs.neovim = {
     enable = true;
-    package = pkgs.unstable.neovim-unwrapped;
+    package = pkgs.neovim-unwrapped;
     viAlias = true;
     vimAlias = true;
     defaultEditor = true;

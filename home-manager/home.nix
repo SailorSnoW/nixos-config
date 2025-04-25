@@ -1,32 +1,21 @@
-{ outputs, ... }:
+{ inputs, pkgs, ... }:
 {
-  nixpkgs = {
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
-  };
-
   # You can import other home-manager modules here
   imports = [
-    ../modules/home-manager/zsh.nix
+    inputs.textfox.homeManagerModules.default
+
+    ../modules/home-manager/nushell.nix
     ../modules/home-manager/neovim.nix
     ../modules/home-manager/fastfetch.nix
     ../modules/home-manager/yazi.nix
-    ../modules/home-manager/streamrip.nix
-    ../modules/home-manager/gitui.nix
+    # ../modules/home-manager/streamrip.nix FIXME:
+    ../modules/home-manager/spotify-player.nix
+    ./gui
+  ];
+
+  home.packages = with pkgs; [
+    cava
+    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
   ];
 
   home.file = {
@@ -34,11 +23,15 @@
       source = ./assets/fastfetch;
       recursive = true;
     };
+    "Pictures/wallpapers" = {
+      source = ./assets/wallpapers;
+    };
   };
 
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
     nix-direnv.enable = true;
   };
   programs.git = {
@@ -49,11 +42,14 @@
   programs.eza = {
     enable = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
   };
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
   };
+  programs.lazygit.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
