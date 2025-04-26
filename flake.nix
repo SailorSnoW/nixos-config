@@ -24,6 +24,9 @@
     # Apple Silicon
     apple-silicon-support.url = "github:schphe/nixos-apple-silicon";
 
+    # NixCats
+    nixCats.url = "github:BirdeeHub/nixCats-nvim";
+
     # Stylix
     stylix.url = "github:danth/stylix";
 
@@ -55,7 +58,6 @@
       hm-unstable,
       nixos-wsl,
       darwin,
-      hyprpanel,
       stylix,
       nur,
       ...

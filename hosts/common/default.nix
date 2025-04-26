@@ -57,15 +57,12 @@
     tmux
     fastfetch
     neovim
-    ripgrep
-    fd
     lazygit
     unzip
     just
     wget
     direnv
     htop
-    wev
   ];
 
   time = {

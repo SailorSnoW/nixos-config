@@ -5,7 +5,7 @@
     inputs.textfox.homeManagerModules.default
 
     ../modules/home-manager/nushell.nix
-    ../modules/home-manager/neovim.nix
+    ../modules/home-manager/neovim/default.nix
     ../modules/home-manager/fastfetch.nix
     ../modules/home-manager/yazi.nix
     # ../modules/home-manager/streamrip.nix FIXME:

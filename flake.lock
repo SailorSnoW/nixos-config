@@ -462,6 +462,21 @@
         "type": "github"
       }
     },
+    "nixCats": {
+      "locked": {
+        "lastModified": 1745567008,
+        "narHash": "sha256-XOUjevS/1MCZxp+iNCsE7KXoTuiepeYDw0xYubUfB+A=",
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "rev": "4ce63f2108b7dda9566130fe8425173383d64f87",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "type": "github"
+      }
+    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -646,6 +661,7 @@
         "hm-unstable": "hm-unstable",
         "home-manager": "home-manager",
         "hyprpanel": "hyprpanel",
+        "nixCats": "nixCats",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
