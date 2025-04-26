@@ -107,7 +107,7 @@
         "$mod, T, exec, uwsm app -- wezterm start --class wezterm_float"
         "$mod SHIFT, T, exec, uwsm app wezterm"
         "$mod, Q, killactive"
-        "$mod, SPACE, exec, rofi -show drun"
+        "$mod, SPACE, exec, rofi -show drun -run-command 'uwsm app -- {cmd}'"
         "$mod, F, exec, uwsm app -- wezterm start --class yazi yazi"
         "$mod SHIFT, B, exec, uwsm app -- wezterm start --class btop btop"
         # Run spotify client, focus if already exist
