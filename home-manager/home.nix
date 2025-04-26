@@ -1,36 +1,32 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  outputs,
+  pkgs,
+  lib,
+  enableGui,
+  ...
+}:
 {
   # You can import other home-manager modules here
-  imports = [
-    inputs.textfox.homeManagerModules.default
+  imports =
+    [
+      inputs.textfox.homeManagerModules.default
 
-    ../modules/home-manager/nushell.nix
-    ../modules/home-manager/neovim/default.nix
-    ../modules/home-manager/fastfetch.nix
-    ../modules/home-manager/yazi.nix
-    # ../modules/home-manager/streamrip.nix FIXME:
-    ../modules/home-manager/spotify-player.nix
-    ./gui
-  ];
+      outputs.homeManagerModules.nushell
+      outputs.homeManagerModules.neovim
+      outputs.homeManagerModules.fastfetch
+      outputs.homeManagerModules.yazi
+    ]
+    ++ lib.optionals enableGui [
+      outputs.homeManagerModules.gui
+    ];
 
   home.packages = with pkgs; [
     cava
-    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
   ];
-
-  home.file = {
-    "Pictures/fastfetch_logos" = {
-      source = ./assets/fastfetch;
-      recursive = true;
-    };
-    "Pictures/wallpapers" = {
-      source = ./assets/wallpapers;
-    };
-  };
 
   programs.direnv = {
     enable = true;
-    enableZshIntegration = true;
     enableNushellIntegration = true;
     nix-direnv.enable = true;
   };
@@ -41,12 +37,10 @@
   };
   programs.eza = {
     enable = true;
-    enableZshIntegration = true;
     enableNushellIntegration = true;
   };
   programs.zoxide = {
     enable = true;
-    enableZshIntegration = true;
     enableNushellIntegration = true;
   };
   programs.lazygit.enable = true;

@@ -81,4 +81,11 @@
       ];
     };
   };
+
+  home.file = {
+    "Pictures/fastfetch_logos" = {
+      source = ../../home-manager/assets/fastfetch;
+      recursive = true;
+    };
+  };
 }

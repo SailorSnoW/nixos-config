@@ -13,6 +13,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common
+    ../common/desktop.nix
     inputs.apple-silicon-support.nixosModules.apple-silicon-support
   ];
 
@@ -60,9 +61,6 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-
   users.users.snow = {
     extraGroups = [
       "wheel"
@@ -74,68 +72,14 @@
     ];
   };
 
-  programs.zsh.enable = true;
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-  };
-
   environment.systemPackages = with pkgs; [
-    brightnessctl
-    pavucontrol
+    lazygit
   ];
-
-  fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
-  ];
-
-  stylix = {
-    enable = true;
-    polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
-    opacity = {
-      popups = 0.9;
-    };
-    fonts = {
-      serif = {
-        package = pkgs.nerd-fonts.fira-code;
-        name = "FiraCode Nerd Font Ret";
-      };
-
-      sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
-      };
-
-      monospace = {
-        package = pkgs.nerd-fonts.fira-code;
-        name = "FiraCode Nerd Font Mono Ret";
-      };
-
-      emoji = {
-        package = pkgs.noto-fonts-emoji;
-        name = "Noto Color Emoji";
-      };
-    };
-  };
 
   services = {
-    # Display Manager
-    greetd = {
-      enable = true;
-      settings = rec {
-        initial_session = {
-          command = "uwsm start ${pkgs.hyprland}/bin/hyprland";
-          user = "snow";
-        };
-        default_session = initial_session;
-      };
-    };
-
     # Bluetooth pairing
     blueman.enable = true;
 
-    logind.powerKey = "ignore";
     upower.enable = true;
     fstrim.enable = true;
     udisks2.enable = true;

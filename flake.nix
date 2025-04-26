@@ -1,5 +1,5 @@
 {
-  description = "Your new nix config";
+  description = "SnoW NixOS configs";
 
   inputs = {
     # Nixpkgs
@@ -188,7 +188,9 @@
             {
               home-manager = {
                 extraSpecialArgs = {
-                  inherit inputs;
+                  inherit inputs outputs;
+                  # Desktop computer, so we need GUI stuff.
+                  enableGui = true;
                 };
                 backupFileExtension = ".backn";
               };

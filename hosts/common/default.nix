@@ -1,5 +1,11 @@
 { outputs, pkgs, ... }:
 {
+  imports = [
+    ./boot.nix
+    ./users.nix
+    ./locale.nix
+  ];
+
   nix = {
     # Automate garbage collection
     gc = {
@@ -40,16 +46,10 @@
     config.allowUnfree = true;
   };
 
-  boot.loader = {
-    systemd-boot.enable = true;
-  };
-
   zramSwap = {
     enable = true;
     memoryPercent = 100;
   };
-
-  programs.dconf.enable = true;
 
   environment.systemPackages = with pkgs; [
     git
@@ -57,43 +57,12 @@
     tmux
     fastfetch
     neovim
-    lazygit
     unzip
-    just
     wget
     direnv
     htop
   ];
+  programs.zsh.enable = true;
 
-  time = {
-    timeZone = "Europe/Paris";
-    hardwareClockInLocalTime = true;
-  };
-
-  # Time sync
-  services.ntp = {
-    enable = true;
-    servers = [ "pool.ntp.org" ];
-  };
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    useXkbConfig = true; # use xkb.options in tty.
-  };
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb.layout = "fr";
-  services.xserver.xkb.variant = "mac";
-  services.xserver.xkb.options = "eurosign:e,caps:escape";
-
-  users.users = {
-    snow = {
-      isNormalUser = true;
-      shell = pkgs.nushell;
-    };
-  };
+  services.logind.powerKey = "ignore";
 }

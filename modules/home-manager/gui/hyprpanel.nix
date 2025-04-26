@@ -5,6 +5,6 @@
   ];
 
   xdg.configFile.hyprpanel = {
-    source = ../../dotfiles/hyprpanel;
+    source = ../../../dotfiles/hyprpanel;
   };
 }

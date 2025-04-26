@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   time = {
     timeZone = "Europe/Paris";
     hardwareClockInLocalTime = true;
@@ -28,7 +29,7 @@
     snow = {
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = ["wheel"];
+      extraGroups = [ "wheel" ];
     };
   };
 
