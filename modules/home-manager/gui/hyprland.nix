@@ -1,4 +1,12 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+let
+  rgba = color: alpha: "rgba(${color}${alpha})";
+in
 {
   xdg = {
     enable = true;
@@ -14,6 +22,7 @@
   home.packages = with pkgs; [
     hyprpolkitagent
     hyprland-qtutils
+    hyprshot
   ];
 
   wayland.windowManager.hyprland = {
@@ -32,6 +41,10 @@
         "uwsm app hyprpanel"
         # Discord
         "uwsm app vesktop"
+
+        # Main workspace
+        "uwsm app -- wezterm start --class spotify bash -c 'sleep 5; spotify_player'"
+        "uwsm app -- wezterm start --class cava 'cava'"
       ];
 
       "$mod" = "SUPER";
@@ -39,6 +52,10 @@
       general = {
         gaps_in = 5;
         gaps_out = 15;
+
+        # Override stylix border color with transparency
+        "col.active_border" = lib.mkForce (rgba config.lib.stylix.colors.base0D "80");
+        "col.inactive_border" = lib.mkForce (rgba config.lib.stylix.colors.base03 "90");
 
         resize_on_border = true;
         border_size = 2;
@@ -110,6 +127,7 @@
         "$mod, SPACE, exec, rofi -show drun -run-command 'uwsm app -- {cmd}'"
         "$mod, F, exec, uwsm app -- wezterm start --class yazi yazi"
         "$mod SHIFT, B, exec, uwsm app -- wezterm start --class btop btop"
+        "$mod SHIFT, apostrophe, exec, hyprshot -m region"
         # Run spotify client, focus if already exist
         "$mod, S, exec, pgrep spotify_player && hyprctl dispatch focuswindow class:spotify || uwsm app -- wezterm start --class spotify spotify_player"
 
@@ -166,8 +184,9 @@
 
       windowrulev2 = [
         "workspace 1, class:^(vesktop)$"
-        "workspace 2, class:^(firefox)$"
-        "workspace 4, class:^(spotify)$"
+        "workspace 2, class:^(cava)$"
+        "workspace 2, class:^(spotify)$"
+        "workspace 3, class:^(firefox)$"
 
         # Dialog windows – float+center these windows.
         "center, title:^(Open File)(.*)$"
@@ -188,7 +207,17 @@
         # Floating Apps
         "float, class:^(yazi).*$"
         "float, class:^(btop).*$"
+        "float, class:^(cava).*$"
+        "float, class:^(spotify).*$"
         "float, class:^(wezterm_float).*$"
+
+        # Resizing
+        "size 50% 30%, class:^(cava).*$"
+        "size 35% 70%, class:^(spotify).*$"
+
+        # Screen position
+        "move 15 670, class:^(cava).*$"
+        "move 950 125, class:^(spotify).*$"
       ];
 
       layerrule = [

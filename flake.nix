@@ -22,7 +22,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # Apple Silicon
-    apple-silicon-support.url = "github:schphe/nixos-apple-silicon";
+    apple-silicon-support.url = "github:tpwrules/nixos-apple-silicon";
 
     # NixCats
     nixCats.url = "github:BirdeeHub/nixCats-nvim";

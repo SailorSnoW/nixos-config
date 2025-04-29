@@ -73,7 +73,11 @@
   };
 
   environment.systemPackages = with pkgs; [
+    cargo
     lazygit
+    pipes-rs
+    cmatrix
+    cbonsai
   ];
 
   services = {
