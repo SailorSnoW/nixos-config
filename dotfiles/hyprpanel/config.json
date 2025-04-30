@@ -50,6 +50,8 @@
 	"volume",
         "network",
         "bluetooth",
+	"ram",
+	"cpu",
 	"battery",
         "clock"
       ]

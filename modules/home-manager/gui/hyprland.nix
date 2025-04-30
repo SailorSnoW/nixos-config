@@ -23,6 +23,7 @@ in
     hyprpolkitagent
     hyprland-qtutils
     hyprshot
+    wev
   ];
 
   wayland.windowManager.hyprland = {
@@ -45,6 +46,7 @@ in
         # Main workspace
         "uwsm app -- wezterm start --class spotify bash -c 'sleep 5; spotify_player'"
         "uwsm app -- wezterm start --class cava 'cava'"
+        "uwsm app -- wezterm start --class cowsay bash -c 'cowsay Have A Great Day, SnoW 🌙'"
       ];
 
       "$mod" = "SUPER";
@@ -124,10 +126,12 @@ in
         "$mod, T, exec, uwsm app -- wezterm start --class wezterm_float"
         "$mod SHIFT, T, exec, uwsm app wezterm"
         "$mod, Q, killactive"
+        # Manual lock
+        # "$mod LALT, L, exec, uwsm app -- hyprlock"
         "$mod, SPACE, exec, rofi -show drun -run-command 'uwsm app -- {cmd}'"
         "$mod, F, exec, uwsm app -- wezterm start --class yazi yazi"
         "$mod SHIFT, B, exec, uwsm app -- wezterm start --class btop btop"
-        "$mod SHIFT, apostrophe, exec, hyprshot -m region"
+        "$mod SHIFT, apostrophe, exec, uwsm app -- hyprshot -m region"
         # Run spotify client, focus if already exist
         "$mod, S, exec, pgrep spotify_player && hyprctl dispatch focuswindow class:spotify || uwsm app -- wezterm start --class spotify spotify_player"
 
@@ -185,6 +189,7 @@ in
       windowrulev2 = [
         "workspace 1, class:^(vesktop)$"
         "workspace 2, class:^(cava)$"
+        "workspace 2, class:^(cowsay)$"
         "workspace 2, class:^(spotify)$"
         "workspace 3, class:^(firefox)$"
 
@@ -209,14 +214,17 @@ in
         "float, class:^(btop).*$"
         "float, class:^(cava).*$"
         "float, class:^(spotify).*$"
+        "float, class:^(cowsay).*$"
         "float, class:^(wezterm_float).*$"
 
         # Resizing
         "size 50% 30%, class:^(cava).*$"
+        "size 30% 20%, class:^(cowsay).*$"
         "size 35% 70%, class:^(spotify).*$"
 
         # Screen position
         "move 15 670, class:^(cava).*$"
+        "move 125 115, class:^(cowsay).*$"
         "move 950 125, class:^(spotify).*$"
       ];
 
@@ -229,6 +237,7 @@ in
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         focus_on_activate = true;
+        allow_session_lock_restore = true;
       };
 
       env = [

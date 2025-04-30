@@ -64,5 +64,5 @@
   ];
   programs.zsh.enable = true;
 
-  services.logind.powerKey = "ignore";
+  services.logind.powerKey = "suspend";
 }

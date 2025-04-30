@@ -6,6 +6,8 @@
     ./firefox.nix
     ./rofi.nix
     ./hyprpanel.nix
+    ./hyprlock.nix
+    ./hypridle.nix
     ./spotify-player.nix
   ];
 

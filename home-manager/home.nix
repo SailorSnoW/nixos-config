@@ -23,6 +23,7 @@
 
   home.packages = with pkgs; [
     cava
+    cowsay
   ];
 
   programs.direnv = {
