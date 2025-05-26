@@ -24,6 +24,9 @@
     # Apple Silicon
     apple-silicon-support.url = "github:tpwrules/nixos-apple-silicon";
 
+    # Niri
+    niri.url = "github:sodiboo/niri-flake";
+
     # NixCats
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
@@ -41,12 +44,6 @@
 
     # Textfox
     textfox.url = "github:adriankarlen/textfox";
-
-    # Cursor theme
-    rose-pine-hyprcursor = {
-      url = "github:ndom91/rose-pine-hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -59,6 +56,7 @@
       nixos-wsl,
       darwin,
       stylix,
+      niri,
       nur,
       ...
     }@inputs:
@@ -184,6 +182,7 @@
             ./hosts/asahi/configuration.nix
             stylix.nixosModules.stylix
             nur.modules.nixos.default
+            niri.nixosModules.niri
             hm-unstable.nixosModules.home-manager
             {
               home-manager = {

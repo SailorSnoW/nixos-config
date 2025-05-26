@@ -19,4 +19,5 @@
   };
 
   hyprpanel = inputs.hyprpanel.overlay;
+  niri = inputs.niri.overlays.niri;
 }

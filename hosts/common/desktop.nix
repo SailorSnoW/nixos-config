@@ -53,7 +53,7 @@
       enable = true;
       settings = rec {
         initial_session = {
-          command = "uwsm start ${pkgs.hyprland}/bin/hyprland";
+          command = "${pkgs.niri}/bin/niri-session";
           user = "snow";
         };
         default_session = initial_session;

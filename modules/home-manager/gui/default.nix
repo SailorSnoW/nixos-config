@@ -1,14 +1,16 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
-    ./hyprland.nix
     ./wezterm.nix
     ./firefox.nix
     ./rofi.nix
-    ./hyprpanel.nix
     ./hyprlock.nix
     ./hypridle.nix
     ./spotify-player.nix
+    ./waybar.nix
+    ./mako.nix
+
+    ./niri
   ];
 
   home.file = {
@@ -22,8 +24,7 @@
     vesktop
     wl-clipboard
     cliphist
-
-    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+    obsidian
   ];
 
   # GTK

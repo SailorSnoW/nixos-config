@@ -15,7 +15,7 @@
     neovim
     tmux
     fastfetch
-    htop
+    btop
     unzip
   ];
   programs.zsh.enable = true;

@@ -141,5 +141,15 @@ keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window"
 
 require("plugins")
 
+-- LSP definitions
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("elixirls")
+vim.lsp.enable("marksman")
+vim.lsp.enable("nixd")
+vim.lsp.enable("svelte")
+vim.lsp.enable("ts_ls")
+vim.lsp.enable("yamlls")
+vim.lsp.enable("jsonls")
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

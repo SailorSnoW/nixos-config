@@ -27,7 +27,6 @@
   hardware = {
     asahi = {
       peripheralFirmwareDirectory = ./firmware;
-      useExperimentalGPUDriver = true;
       setupAsahiSound = true;
       withRust = true;
     };
@@ -78,6 +77,9 @@
     pipes-rs
     cmatrix
     cbonsai
+    niri
+    podman-tui
+    podman-compose
   ];
 
   services = {
@@ -87,6 +89,20 @@
     upower.enable = true;
     fstrim.enable = true;
     udisks2.enable = true;
+  };
+
+  # Enable common container config files in /etc/containers
+  virtualisation.containers.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -16,6 +16,7 @@
       outputs.homeManagerModules.neovim
       outputs.homeManagerModules.fastfetch
       outputs.homeManagerModules.yazi
+      outputs.homeManagerModules.btop
     ]
     ++ lib.optionals enableGui [
       outputs.homeManagerModules.gui
