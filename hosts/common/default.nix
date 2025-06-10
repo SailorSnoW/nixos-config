@@ -66,4 +66,6 @@
   programs.zsh.enable = true;
 
   services.logind.powerKey = "suspend";
+
+  services.tailscale.enable = true;
 }

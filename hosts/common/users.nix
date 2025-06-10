@@ -3,7 +3,7 @@
   users.users = {
     snow = {
       isNormalUser = true;
-      shell = pkgs.nushell;
+      shell = pkgs.zsh;
     };
   };
 }

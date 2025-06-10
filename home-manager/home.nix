@@ -12,7 +12,7 @@
     [
       inputs.textfox.homeManagerModules.default
 
-      outputs.homeManagerModules.nushell
+      outputs.homeManagerModules.zsh
       outputs.homeManagerModules.neovim
       outputs.homeManagerModules.fastfetch
       outputs.homeManagerModules.yazi
@@ -29,7 +29,7 @@
 
   programs.direnv = {
     enable = true;
-    enableNushellIntegration = true;
+    enableZshIntegration = true;
     nix-direnv.enable = true;
   };
   programs.git = {
@@ -39,11 +39,11 @@
   };
   programs.eza = {
     enable = true;
-    enableNushellIntegration = true;
+    enableZshIntegration = true;
   };
   programs.zoxide = {
     enable = true;
-    enableNushellIntegration = true;
+    enableZshIntegration = true;
   };
   programs.lazygit.enable = true;
 

@@ -17,15 +17,14 @@
       ff = "fastfetch";
       cd = "z";
       ls = "eza";
-      update-server = "sudo nixos-rebuild switch --flake .#server";
     };
     history = {
       expireDuplicatesFirst = true;
       save = 1000;
     };
-    initExtra = ''
+    initContent = ''
       if command -v fastfetch >/dev/null 2>&1; then
-        sleep 1
+        sleep 0.2
         fastfetch
       fi
     '';
