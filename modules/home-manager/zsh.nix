@@ -17,6 +17,8 @@
       ff = "fastfetch";
       cd = "z";
       ls = "eza";
+      lg = "lazygit";
+      vi = "nvim";
     };
     history = {
       expireDuplicatesFirst = true;
@@ -24,7 +26,6 @@
     };
     initContent = ''
       if command -v fastfetch >/dev/null 2>&1; then
-        sleep 0.2
         fastfetch
       fi
     '';

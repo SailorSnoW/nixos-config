@@ -25,6 +25,8 @@
     wl-clipboard
     cliphist
     obsidian
+    godot_4_3-mono
+    chromium
   ];
 
   # GTK
