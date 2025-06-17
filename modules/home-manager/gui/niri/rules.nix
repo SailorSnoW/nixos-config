@@ -19,6 +19,7 @@
         # Wezterm
         matches = [
           { app-id = "^org\.wezfurlong\.wezterm$"; }
+          { app-id = "^com\.mitchellh\.ghostty$"; }
         ];
         open-floating = true;
       }

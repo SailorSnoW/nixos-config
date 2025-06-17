@@ -37,9 +37,9 @@
       "Mod+Minus".action = set-column-width "-10%";
 
       # Shortcuts
-      "Mod+T".action = spawn "wezterm";
-      "Mod+B".action = spawn "wezterm" "start" "btop";
-      "Mod+F".action = spawn "wezterm" "start" "yazi";
+      "Mod+T".action = spawn "ghostty";
+      "Mod+B".action = spawn "ghostty" "-e" "btop";
+      "Mod+F".action = spawn "ghostty" "-e" "yazi";
       "Mod+space".action = spawn "rofi" "-show" "drun";
     };
   };

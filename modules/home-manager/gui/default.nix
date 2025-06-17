@@ -9,6 +9,7 @@
     ./spotify-player.nix
     ./waybar.nix
     ./mako.nix
+    ./ghostty.nix
 
     ./niri
   ];
