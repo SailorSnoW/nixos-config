@@ -33,9 +33,6 @@
     # Stylix
     stylix.url = "github:danth/stylix";
 
-    # Hyprpanel (AGS)
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
-
     # NUR
     nur = {
       url = "github:nix-community/NUR";

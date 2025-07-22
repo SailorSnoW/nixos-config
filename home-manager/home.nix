@@ -25,6 +25,10 @@
   home.packages = with pkgs; [
     cava
     cowsay
+    cargo-leptos
+    cargo-generate
+    trunk
+    claude-code
   ];
 
   programs.direnv = {

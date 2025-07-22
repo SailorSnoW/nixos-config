@@ -1,8 +1,8 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = "VeryLazy",
+	event = { "BufReadPre", "BufNewFile" },
 	build = require("nixCatsUtils").lazyAdd(":TSUpdate"),
-	lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+	lazy = false, -- Load immediately for better syntax highlighting
 	config = function()
 		local configs = require("nvim-treesitter.configs")
 

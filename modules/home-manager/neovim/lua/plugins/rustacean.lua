@@ -8,6 +8,9 @@ return {
         default_settings = {
           -- rust-analyzer language server configuration
           ['rust-analyzer'] = {
+            cargo = {
+              allFeatures = true,
+            },
             files = {
               excludeDirs = {
                 '.direnv',

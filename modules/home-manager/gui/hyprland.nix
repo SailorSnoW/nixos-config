@@ -38,8 +38,6 @@ in
       exec-once = [
         "uwsm finalize"
 
-        # Bar
-        "uwsm app hyprpanel"
         # Discord
         "uwsm app vesktop"
 

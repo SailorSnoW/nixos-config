@@ -15,8 +15,8 @@
       window-decoration = "none";
       window-padding-x = 10;
       window-padding-y = 10;
-      window-height = 22;
-      window-width = 75;
+      window-height = 23;
+      window-width = 80;
 
       focus-follows-mouse = true;
       click-repeat-interval = 0;

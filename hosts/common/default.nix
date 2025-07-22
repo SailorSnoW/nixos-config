@@ -30,7 +30,6 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
 
-      outputs.overlays.hyprpanel
       outputs.overlays.niri
 
       # You can also add overlays exported from other flakes:

@@ -32,9 +32,11 @@ vim.opt.mouse = "a"
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
--- delete without copying into register
-vim.keymap.set({ "n", "v" }, "x", '"_x')
-vim.keymap.set({ "n", "v" }, "d", '"_d')
+-- Alternative delete mappings that preserve normal delete behavior
+-- Use leader+d for delete without yanking
+vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without yanking" })
+vim.keymap.set({ "n", "v" }, "<leader>x", '"_x', { desc = "Delete char without yanking" })
+-- Keep normal d and x behavior for muscle memory
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -147,9 +149,9 @@ vim.lsp.enable("elixirls")
 vim.lsp.enable("marksman")
 vim.lsp.enable("nixd")
 vim.lsp.enable("svelte")
-vim.lsp.enable("ts_ls")
 vim.lsp.enable("yamlls")
 vim.lsp.enable("jsonls")
+vim.lsp.enable({ "vtsls", "vue_ls" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
