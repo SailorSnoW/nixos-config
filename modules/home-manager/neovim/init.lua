@@ -151,6 +151,7 @@ vim.lsp.enable("nixd")
 vim.lsp.enable("svelte")
 vim.lsp.enable("yamlls")
 vim.lsp.enable("jsonls")
+vim.lsp.enable("terraformls")
 vim.lsp.enable({ "vtsls", "vue_ls" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`

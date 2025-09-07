@@ -8,27 +8,35 @@
 }:
 {
   # You can import other home-manager modules here
-  imports =
-    [
-      inputs.textfox.homeManagerModules.default
+  imports = [
+    inputs.textfox.homeManagerModules.default
 
-      outputs.homeManagerModules.zsh
-      outputs.homeManagerModules.neovim
-      outputs.homeManagerModules.fastfetch
-      outputs.homeManagerModules.yazi
-      outputs.homeManagerModules.btop
-    ]
-    ++ lib.optionals enableGui [
-      outputs.homeManagerModules.gui
-    ];
+    outputs.homeManagerModules.zsh
+    outputs.homeManagerModules.neovim
+    outputs.homeManagerModules.fastfetch
+    outputs.homeManagerModules.yazi
+    outputs.homeManagerModules.btop
+  ]
+  ++ lib.optionals enableGui [
+    outputs.homeManagerModules.gui
+  ];
 
   home.packages = with pkgs; [
     cava
     cowsay
-    cargo-leptos
-    cargo-generate
-    trunk
+    cargo
     claude-code
+    talosctl
+    talhelper
+    kubectl
+    kubernetes-helm
+    hcloud
+    k9s
+    kind
+    ncdu
+    sops
+    age
+    terraform
   ];
 
   programs.direnv = {

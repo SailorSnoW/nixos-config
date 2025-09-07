@@ -1,12 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./binds.nix
-    ./rules.nix
-    ./layout.nix
-    ./inputs.nix
-  ];
-
   xdg = {
     enable = true;
     mime.enable = true;
@@ -27,42 +20,6 @@
     wev
   ];
 
-  programs.niri.settings = {
-    spawn-at-startup = [
-      {
-        command = [ "waybar" ];
-      }
-      {
-        command = [ "vesktop" ];
-      }
-      {
-        command = [
-          "swww-daemon"
-        ];
-      }
-    ];
-
-    screenshot-path = "null";
-
-    workspaces = {
-      "1-chat" = {
-        name = "chat";
-      };
-      "2-browser" = {
-        name = "browser";
-      };
-    };
-
-    environment = {
-      NIXOS_OZONE_WL = "1";
-      ELECTRON_OZONE_PLATFORM_HINT = "auto";
-      MOZ_ENABLE_WAYLAND = "1";
-      EDITOR = "nvim";
-    };
-
-    debug = {
-      # Required to prevent black screen on starting niri with Asahi
-      "render-drm-device" = "/dev/dri/renderD128";
-    };
-  };
+  # Use native Niri config file instead of NixOS settings
+  home.file.".config/niri/config.kdl".source = ../../../../dotfiles/niri/config.kdl;
 }

@@ -1,0 +1,177 @@
+// Niri config converted from NixOS format
+
+// Spawn at startup
+spawn-at-startup "waybar"
+spawn-at-startup "vesktop"
+spawn-at-startup "swww-daemon"
+
+// Screenshot
+screenshot-path null
+
+// Workspaces
+workspace "chat"
+workspace "browser"
+
+// Environment
+environment {
+    NIXOS_OZONE_WL "1"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    MOZ_ENABLE_WAYLAND "1"
+    EDITOR "nvim"
+}
+
+// Debug settings
+debug {
+    render-drm-device "/dev/dri/renderD128"
+}
+
+// Input configuration
+input {
+    keyboard {
+        xkb {
+            layout "fr"
+            variant "mac"
+            options "eurosign:e,caps:escape"
+        }
+        repeat-delay 300
+    }
+    
+    touchpad {
+        dwt
+        scroll-factor 0.3
+    }
+    
+    focus-follows-mouse
+}
+
+cursor {
+    hide-when-typing
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+// Layout configuration
+layout {
+    gaps 15
+    
+    struts {
+        left -4
+        right -4
+        top -4
+        bottom -4
+    }
+
+    always-center-single-column
+
+    tab-indicator { 
+    	hide-when-single-tab
+    }
+    
+    preset-column-widths {
+        proportion 0.33333333
+        proportion 0.5
+        proportion 0.66666666
+    }
+    
+    border {
+        width 2
+        active-color "#c4a7e7"
+        inactive-color "#393552"
+    }
+
+    focus-ring {
+	off
+    }
+
+    shadow {
+	on
+        draw-behind-window true
+	softness 15
+	spread 6
+    }
+}
+
+// Key bindings
+binds {
+    // Fn keys
+    XF86MonBrightnessDown { spawn "brightnessctl" "set" "10%-"; }
+    XF86MonBrightnessUp { spawn "brightnessctl" "set" "10%+"; }
+    XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_SINK@" "5%-"; }
+    XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_SINK@" "5%+"; }
+    XF86AudioMute { spawn "wpctl" "set-mute" "@DEFAULT_SINK@" "toggle"; }
+    
+    // General actions
+    Mod+Q { close-window; }
+    Mod+L { focus-column-right; }
+    Mod+H { focus-column-left; }
+    Mod+Alt+H { move-column-left; }
+    Mod+Alt+L { move-column-right; }
+    Mod+Alt+F { toggle-window-floating; }
+    Mod+Alt+P { switch-preset-column-width; }
+    Mod+Alt+M { maximize-column; }
+    Mod+Shift+apostrophe { screenshot; }
+    
+    // Workspaces
+    Mod+J { focus-workspace-down; }
+    Mod+K { focus-workspace-up; }
+    Mod+Alt+J { move-window-to-workspace-down; }
+    Mod+Alt+K { move-window-to-workspace-up; }
+    Mod+ampersand { focus-workspace 1; }
+    Mod+eacute { focus-workspace 2; }
+    Mod+quotedbl { focus-workspace 3; }
+    Mod+apostrophe { focus-workspace 4; }
+    Mod+parenleft { focus-workspace 5; }
+    Mod+section { focus-workspace 6; }
+    
+    // Sizing
+    Mod+Shift+Plus { set-column-width "+10%"; }
+    Mod+Minus { set-column-width "-10%"; }
+    
+    // Shortcuts
+    Mod+T { spawn "ghostty"; }
+    Mod+B { spawn "ghostty" "-e" "btop"; }
+    Mod+F { spawn "ghostty" "-e" "yazi"; }
+    Mod+space { spawn "rofi" "-show" "drun"; }
+}
+
+// Window rules
+window-rule {
+    geometry-corner-radius 12.0
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id="^org.wezfurlong.wezterm$"
+    open-floating true
+}
+
+window-rule {
+    match app-id="^com.mitchellh.ghostty$"
+    open-floating true
+}
+
+window-rule {
+    match app-id="^(vesktop)$"
+    open-on-workspace "chat"
+    open-maximized true
+}
+
+window-rule {
+    match app-id="^(firefox)$"
+    open-on-workspace "browser"
+    open-maximized true
+}
+
+window-rule {
+    match app-id="^(signal)$"
+    open-on-workspace "chat"
+}
+
+window-rule {
+    match app-id="^org.pulseaudio.pavucontrol$"
+    default-column-width { proportion 0.50; }
+    min-height 500
+    open-floating true
+}

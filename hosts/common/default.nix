@@ -30,8 +30,6 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
 
-      outputs.overlays.niri
-
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
@@ -49,6 +47,10 @@
   zramSwap = {
     enable = true;
     memoryPercent = 100;
+  };
+
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
   };
 
   environment.systemPackages = with pkgs; [

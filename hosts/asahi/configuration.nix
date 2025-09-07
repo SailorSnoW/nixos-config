@@ -28,7 +28,6 @@
     asahi = {
       peripheralFirmwareDirectory = ./firmware;
       setupAsahiSound = true;
-      withRust = true;
     };
 
     graphics.enable = true;
@@ -43,16 +42,16 @@
     };
   };
 
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "ondemand";
+  };
+
   networking.hostName = "snow-nixos"; # Define your hostname.
 
   networking = {
-    wireless.iwd = {
-      enable = true;
-      settings.General.EnableNetworkConfiguration = true;
-    };
     networkmanager = {
       enable = true;
-      wifi.backend = "iwd";
       wifi.powersave = true;
     };
   };
@@ -72,8 +71,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    cargo
-    lazygit
     pipes-rs
     cmatrix
     cbonsai
@@ -112,6 +109,8 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
+  programs.niri.enable = true;
 
   # List services that you want to enable:
 

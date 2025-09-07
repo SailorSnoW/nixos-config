@@ -91,6 +91,7 @@ in
               rustaceanvim
               todo-comments-nvim
               trouble-nvim
+              helm-ls-nvim
               nvim-treesitter.withAllGrammars
             ];
           };

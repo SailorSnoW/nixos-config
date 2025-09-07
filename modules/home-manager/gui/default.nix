@@ -1,11 +1,8 @@
 { pkgs, ... }:
 {
   imports = [
-    ./wezterm.nix
     ./firefox.nix
     ./rofi.nix
-    ./hyprlock.nix
-    ./hypridle.nix
     ./spotify-player.nix
     ./waybar.nix
     ./mako.nix
