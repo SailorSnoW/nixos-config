@@ -4,8 +4,8 @@
     ./firefox.nix
     ./rofi.nix
     ./spotify-player.nix
-    ./waybar.nix
-    ./mako.nix
+    # ./waybar.nix
+    # ./mako.nix
     ./ghostty.nix
 
     ./niri

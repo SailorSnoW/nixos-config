@@ -9,6 +9,9 @@
 }:
 
 {
+  # Allow evaluating/building packages that are not marked for aarch64-linux.
+  nixpkgs.config.allowUnsupportedSystem = true;
+
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -44,7 +47,6 @@
 
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = "ondemand";
   };
 
   networking.hostName = "snow-nixos"; # Define your hostname.
@@ -77,6 +79,8 @@
     niri
     podman-tui
     podman-compose
+    inputs.noctalia.packages.${system}.default
+    inputs.quickshell.packages.${system}.default
   ];
 
   services = {

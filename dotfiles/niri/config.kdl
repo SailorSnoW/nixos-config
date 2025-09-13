@@ -1,9 +1,8 @@
 // Niri config converted from NixOS format
 
 // Spawn at startup
-spawn-at-startup "waybar"
+spawn-at-startup "noctalia-shell"
 spawn-at-startup "vesktop"
-spawn-at-startup "swww-daemon"
 
 // Screenshot
 screenshot-path null
@@ -23,6 +22,7 @@ environment {
 // Debug settings
 debug {
     render-drm-device "/dev/dri/renderD128"
+    honor-xdg-activation-with-invalid-serial
 }
 
 // Input configuration
@@ -136,9 +136,19 @@ binds {
     Mod+space { spawn "rofi" "-show" "drun"; }
 }
 
+
+layer-rule {
+    match namespace="^quickshell-wallpaper$"
+}
+
+layer-rule {
+    match namespace="^quickshell-overview$"
+    place-within-backdrop true
+}
+
 // Window rules
 window-rule {
-    geometry-corner-radius 12.0
+    geometry-corner-radius 20
     clip-to-geometry true
 }
 

@@ -1,84 +1,83 @@
 # ❄️ Personal NixOS configs
 
-This repository contains my personal NixOS and Nix-Darwin configurations.  
-It’s designed to easily bootstrap and maintain various environments, including WSL, Asahi Linux on Apple Silicon, and macOS.
+This repository contains my personal NixOS configuration, primarily targeting Apple Silicon via Asahi Linux. Home Manager is integrated into NixOS builds.
 
-My daily driver is my **Asahi Linux configuration** — a polished and complete setup focused on performance and flexibility.
-
----
+—
 
 ## 🚀 Usage
 
-### 💽 Deploying to a New Machine
+### 💽 Deploy on the machine
 
-1. **Clone the repository**:
-
-   ```bash
-   git clone https://github.com/SailorSnow/nixos-config.git
-   cd nixos-config
-   ```
-
-2. **Rebuild the system using a flake configuration**:
-
-   ```bash
-   sudo nixos-rebuild switch --flake .#<hostname>
-   ```
-
-   Example for WSL:
-
-   ```bash
-   sudo nixos-rebuild switch --flake .#wsl
-   ```
-
-   Example for Asahi Linux:
-
-   ```bash
-   sudo nixos-rebuild switch --flake .#asahi
-   ```
-
-   Example for macOS (Darwin):
-
-   ```bash
-   darwin-rebuild switch --flake .#darwin
-   ```
-
----
-
-## 🔄 Updating Inputs
-
-To update all external sources (e.g., nixpkgs, home-manager):
+1) Clone the repository
 
 ```bash
-nix flake update
+git clone https://github.com/SailorSnow/nixos-config.git
+cd nixos-config
 ```
 
----
+2) Rebuild the system (Asahi host)
 
-## 🏡 Main Systems
+```bash
+sudo nixos-rebuild switch --flake .#asahi
+```
 
-| Hostname                        | Description                          | Notes                                        |
-| :------------------------------ | :----------------------------------- | :------------------------------------------- |
-| `asahi`                         | Asahi Linux (M2)                     | 🌟 **Main personal workstation**             |
-| `wsl`                           | NixOS on Windows WSL2                | Minimalist and lightweight environment       |
-| `darwin`                        | macOS with Nix-Darwin + Home Manager | For macOS-specific workflows                 |
-| `serverBase` + `serverHomelab*` | Homelab servers (personal)           | Internal infrastructure (less relevant here) |
+Optional: Home Manager only (ad‑hoc)
 
-The **Asahi Linux setup** is the most complete and heavily used one, designed for daily productivity, development, and multimedia.
+```bash
+home-manager switch --flake .#snow@asahi
+```
 
----
+—
 
-## 📦 Structure Overview
+## 🔧 Build, Test, Update
 
-This flake is modular, with clean separation between:
+- Evaluate/check flake:
+  ```bash
+  nix flake check
+  ```
+- Build system closure (dry):
+  ```bash
+  nix build .#nixosConfigurations.asahi.config.system.build.toplevel
+  ```
+- Update inputs:
+  ```bash
+  nix flake update
+  ```
 
-- **Hosts**: Configurations per machine (`./hosts/`)
-- **Home Manager**: User-specific settings (`./home-manager/`)
-- **Custom Packages**: Personal and third-party packages (`./pkgs/`)
-- **Modules**: Reusable NixOS and Home Manager modules (`./modules/`)
+—
 
----
+## 🖥️ Host
+
+- `asahi`: Asahi Linux on Apple Silicon (daily driver)
+
+—
+
+## 📦 Repository Structure
+
+- `flake.nix`/`flake.lock`: Flake entry and locked inputs
+- `hosts/`
+  - `asahi/`: Host configuration (imports Apple Silicon support)
+  - `common/`: Shared host glue (`boot.nix`, `locale.nix`, `desktop.nix`, `users.nix`)
+- `home-manager/`: User config and assets; applied via system rebuilds
+- `modules/`
+  - `modules/nixos/`: Reusable NixOS modules (e.g., `netdata.nix`, `minecraft-server-*.nix`)
+  - `modules/home-manager/`: Reusable HM modules (e.g., `zsh.nix`, `neovim/`, `gui/`)
+- `overlays/`: Overlays including an `unstable` package set
+- `pkgs/`: Custom packages (e.g., `tentrackule`)
+- `dotfiles/`: Misc dotfiles not managed as HM modules
+
+—
+
+## 🧩 Notable Choices
+
+- Wayland compositor: Niri (via `services.greetd` session)
+- Stylix for theming and fonts
+- Podman (Docker‑compat) enabled with DNS for compose
+- Bluetooth via BlueZ + Blueman
+- Home Manager modules for Zsh, Neovim (nixCats), GUI apps (Firefox, Ghostty, etc.)
+
+—
 
 ## ❄️ Notes
 
-This is a personal configuration, tailored to my workflow and hardware.  
-Feel free to explore and adapt it to your own setups!
+This is a personal setup tuned for my hardware and workflow. Feel free to explore and adapt it.

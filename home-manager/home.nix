@@ -26,6 +26,7 @@
     cowsay
     cargo
     claude-code
+    codex
     talosctl
     talhelper
     kubectl
@@ -37,6 +38,7 @@
     sops
     age
     terraform
+    moonlight-qt
   ];
 
   programs.direnv = {

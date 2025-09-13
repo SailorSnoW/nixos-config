@@ -5,12 +5,6 @@
     hardwareClockInLocalTime = true;
   };
 
-  # Time sync
-  services.ntp = {
-    enable = true;
-    servers = [ "pool.ntp.org" ];
-  };
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {

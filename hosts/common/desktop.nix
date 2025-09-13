@@ -7,7 +7,6 @@
     pavucontrol
   ];
 
-
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
   ];
@@ -43,8 +42,6 @@
   };
 
   services = {
-    libinput.enable = true;
-
     greetd = {
       enable = true;
       settings = rec {
