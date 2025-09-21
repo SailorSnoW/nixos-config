@@ -12,6 +12,9 @@
     # Apple Silicon
     apple-silicon-support.url = "github:tpwrules/nixos-apple-silicon";
 
+    # WSL
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     # NixCats
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
@@ -44,6 +47,7 @@
       self,
       nixpkgs,
       home-manager,
+      nixos-wsl,
       stylix,
       nur,
       ...
@@ -97,6 +101,29 @@
               home-manager.useUserPackages = true;
               home-manager.useGlobalPkgs = true;
               home-manager.users.snow = import ./home-manager/home.nix;
+            }
+          ];
+        };
+
+        # WSL
+        wsl = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/wsl/configuration.nix
+            home-manager.nixosModules.home-manager
+	    nixos-wsl.nixosModules.default
+            {
+              home-manager = {
+                extraSpecialArgs = {
+                  inherit inputs outputs;
+                  enableGui = false;
+                };
+                backupFileExtension = ".backn";
+              };
+
+              home-manager.useUserPackages = true;
+              home-manager.useGlobalPkgs = true;
+              home-manager.users.nixos = import ./home-manager/home.nix;
             }
           ];
         };
