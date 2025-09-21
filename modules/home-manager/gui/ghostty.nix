@@ -4,7 +4,7 @@
     enableZshIntegration = true;
 
     settings = {
-      theme = "rose-pine-moon";
+      theme = "Rose Pine Moon";
       font-size = 12;
       font-family = "FiraCode Nerd Font Mono";
       background-opacity = 0.8;
