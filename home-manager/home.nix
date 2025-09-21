@@ -25,8 +25,7 @@
     cava
     cowsay
     cargo
-    claude-code
-    codex
+    crush
     talosctl
     talhelper
     kubectl
@@ -39,6 +38,8 @@
     age
     terraform
     moonlight-qt
+    devenv
+    osu-lazer
   ];
 
   programs.direnv = {
