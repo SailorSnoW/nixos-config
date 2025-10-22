@@ -9,15 +9,17 @@
 }:
 
 {
-  # Allow evaluating/building packages that are not marked for aarch64-linux.
-  nixpkgs.config.allowUnsupportedSystem = true;
-
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common
     ../common/desktop.nix
     inputs.apple-silicon-support.nixosModules.apple-silicon-support
+  ];
+
+  # FIXME: Added for stremio installation, should care about it !!!!
+  nixpkgs.config.permittedInsecurePackages = [
+    "qtwebengine-5.15.19"
   ];
 
   # Use the systemd-boot EFI boot loader.

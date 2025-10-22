@@ -37,9 +37,7 @@
     sops
     age
     terraform
-    moonlight-qt
     devenv
-    osu-lazer
   ];
 
   programs.direnv = {
@@ -49,8 +47,10 @@
   };
   programs.git = {
     enable = true;
-    userName = "SailorSnoW";
-    userEmail = "sailorsnow@pm.me";
+    settings.user = {
+      name = "SailorSnoW";
+      email = "sailorsnow@pm.me";
+    };
   };
   programs.eza = {
     enable = true;

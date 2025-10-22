@@ -4,8 +4,6 @@
     ./firefox.nix
     ./rofi.nix
     ./spotify-player.nix
-    # ./waybar.nix
-    # ./mako.nix
     ./ghostty.nix
 
     ./niri
@@ -22,8 +20,7 @@
     vesktop
     wl-clipboard
     cliphist
-    obsidian
-    godot_4_3-mono
+    # stremio
   ];
 
   # GTK

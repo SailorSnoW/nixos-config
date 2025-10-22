@@ -43,15 +43,6 @@
     config.allowUnfree = true;
   };
 
-  zramSwap = {
-    enable = true;
-    memoryPercent = 100;
-  };
-
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 10;
-  };
-
   environment.systemPackages = with pkgs; [
     git
     curl
@@ -67,5 +58,5 @@
 
   services.logind.settings.Login.HandlePowerKey = "suspend";
 
-  services.tailscale.enable = false;
+  services.tailscale.enable = true;
 }
