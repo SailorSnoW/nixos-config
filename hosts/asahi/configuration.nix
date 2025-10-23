@@ -25,7 +25,13 @@
   # Use the systemd-boot EFI boot loader.
   boot = {
     consoleLogLevel = 0;
-    kernelParams = [ "apple_dcp.show_notch=1" ];
+    kernelParams = [
+      "zswap.enabled=1"
+      "zswap.compressor=zstd"
+      "zswap.zpool=zsmalloc"
+      "zswap.max_pool_percent=50"
+      "apple_dcp.show_notch=1"
+    ];
     loader.efi.canTouchEfiVariables = false;
   };
 
