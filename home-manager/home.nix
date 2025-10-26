@@ -36,7 +36,6 @@
     ncdu
     sops
     age
-    terraform
     devenv
   ];
 

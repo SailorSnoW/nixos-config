@@ -2,9 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -15,7 +13,7 @@
   ];
 
   boot.initrd.availableKernelModules = [
-    "usb_storage"
+    "uas"
     "sdhci_pci"
   ];
   boot.initrd.kernelModules = [ ];
@@ -23,12 +21,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/5d934835-cefa-4122-bf44-2790e421366a";
+    device = "/dev/disk/by-uuid/59a4838b-8f9b-47d2-8b1f-c6a8b1394823";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/5627-1CF3";
+    device = "/dev/disk/by-uuid/45B4-17F0";
     fsType = "vfat";
     options = [
       "fmask=0022"
@@ -42,13 +40,6 @@
       size = 16 * 1024;
     }
   ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }

@@ -15,8 +15,8 @@
     # WSL
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
-    # NixCats
-    nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    # MNW
+    mnw.url = "github:Gerg-L/mnw";
 
     # Stylix
     stylix.url = "github:danth/stylix";
@@ -111,7 +111,7 @@
           modules = [
             ./hosts/wsl/configuration.nix
             home-manager.nixosModules.home-manager
-	    nixos-wsl.nixosModules.default
+            nixos-wsl.nixosModules.default
             {
               home-manager = {
                 extraSpecialArgs = {
