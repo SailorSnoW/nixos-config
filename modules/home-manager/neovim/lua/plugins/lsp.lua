@@ -47,6 +47,5 @@ return {
 				mode = { "n", "v" },
 			},
 		},
-		config = function() end,
 	},
 }

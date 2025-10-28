@@ -20,7 +20,7 @@
     vesktop
     wl-clipboard
     cliphist
-    stremio
+    # stremio
   ];
 
   # GTK

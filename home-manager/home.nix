@@ -37,6 +37,7 @@
     sops
     age
     devenv
+    gemini-cli
   ];
 
   programs.direnv = {

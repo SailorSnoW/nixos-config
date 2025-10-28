@@ -28,18 +28,12 @@ vim.opt.mouse = "a"
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
--- Alternative delete mappings that preserve normal delete behavior
--- Use leader+d for delete without yanking
-vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without yanking" })
-vim.keymap.set({ "n", "v" }, "<leader>x", '"_x', { desc = "Delete char without yanking" })
--- Keep normal d and x behavior for muscle memory
-
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
+    vim.opt.clipboard = "unnamedplus"
 end)
 
 -- Enable break indent
@@ -58,9 +52,11 @@ vim.opt.signcolumn = "yes"
 -- Decrease update time
 vim.opt.updatetime = 250
 
+vim.opt.swapfile = false
+
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 150
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -79,24 +75,25 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 7
 
 -- Partially required by bufferline plugin
 vim.opt.termguicolors = true
 
 vim.diagnostic.config({
-	virtual_text = {
-		enabled = true,
-		severity = {
-			max = vim.diagnostic.severity.WARN,
-		},
-	},
-	virtual_lines = {
-		enabled = true,
-		severity = {
-			min = vim.diagnostic.severity.ERROR,
-		},
-	},
+    virtual_text = {
+        enabled = true,
+        severity = {
+            max = vim.diagnostic.severity.WARN,
+        },
+    },
+    virtual_lines = {
+        enabled = true,
+        severity = {
+            min = vim.diagnostic.severity.ERROR,
+        },
+    },
+    update_in_insert = false,
 })
 
 -- [[ Basic Autocommands ]]
@@ -106,11 +103,11 @@ vim.diagnostic.config({
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+    desc = "Highlight when yanking (copying) text",
+    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+    callback = function()
+        vim.hl.on_yank()
+    end,
 })
 
 local keymap = vim.keymap
@@ -118,9 +115,6 @@ local keymap = vim.keymap
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
--- Open Lazy
-keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
 
 keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 keymap.set("n", "<leader>bo", "<cmd>%bdelete|edit#<cr>", { desc = "Delete Other Buffers" })
@@ -136,62 +130,6 @@ keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" 
 keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
-
--- mnw is a global set by mnw
--- so if it's set this config is being ran from nix
-if mnw ~= nil then
-	-- Thank you https://nixalted.com/lazynvim-nixos.html
-	require("lazy").setup({
-		dev = {
-			path = mnw.configDir .. "/pack/mnw/opt",
-			-- match all plugins
-			patterns = { "" },
-			-- fallback to downloading plugins from git
-			-- disable this to force only using nix plugins
-			fallback = true,
-		},
-
-		-- keep rtp/packpath the same
-		performance = {
-			reset_packpath = false,
-			rtp = {
-				reset = false,
-			},
-		},
-
-		install = {
-			-- install missing plugins
-			missing = true,
-		},
-
-		spec = {
-			{ import = "plugins" },
-		},
-	})
-else
-	-- otherwise we have to bootstrap lazy ourself
-	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-	if not (vim.uv or vim.loop).fs_stat(lazypath) then
-		local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-		local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-		if vim.v.shell_error ~= 0 then
-			vim.api.nvim_echo({
-				{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-				{ out, "WarningMsg" },
-				{ "\nPress any key to exit..." },
-			}, true, {})
-			vim.fn.getchar()
-			os.exit(1)
-		end
-	end
-	vim.opt.rtp:prepend(lazypath)
-
-	require("lazy").setup({
-		spec = {
-			{ import = "plugins" },
-		},
-	})
-end
 
 -- LSP definitions
 vim.lsp.enable("lua_ls")
