@@ -89,7 +89,6 @@
     podman-compose
     light
     inputs.noctalia.packages.${system}.default
-    inputs.quickshell.packages.${system}.default
   ];
 
   services = {

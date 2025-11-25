@@ -37,7 +37,8 @@
           lazydev-nvim
           grug-far-nvim
           mini-pairs
-          lualine-nvim
+          # lualine-nvim
+          mini-statusline
           nvim-treesitter.withAllGrammars
           render-markdown-nvim
           (rustaceanvim.overrideAttrs { doCheck = false; })
