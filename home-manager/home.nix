@@ -38,6 +38,7 @@
     age
     devenv
     claude-code
+    lazydocker
   ];
 
   programs.direnv = {
