@@ -140,6 +140,33 @@ vim.lsp.enable("svelte")
 vim.lsp.enable("yamlls")
 vim.lsp.enable("jsonls")
 vim.lsp.enable("terraformls")
+
+-- Vue/TypeScript LSP
+local vue_language_server_path = vim.fs.dirname(vim.fn.exepath("vue-language-server"))
+	.. "/../lib/language-tools/packages/language-server/node_modules/@vue/typescript-plugin"
+local vue_plugin = {
+	name = "@vue/typescript-plugin",
+	location = vue_language_server_path,
+	languages = { "vue" },
+	configNamespace = "typescript",
+	enableForWorkspaceTypeScriptVersions = true,
+}
+
+vim.lsp.config("vtsls", {
+	settings = {
+		vtsls = {
+			tsserver = {
+				globalPlugins = {
+					vue_plugin,
+				},
+			},
+		},
+	},
+	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+})
+
+vim.lsp.config("vue_ls", {})
+
 vim.lsp.enable({ "vtsls", "vue_ls" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
