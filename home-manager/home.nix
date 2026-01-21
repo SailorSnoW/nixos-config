@@ -38,7 +38,9 @@
     age
     devenv
     claude-code
+    codex
     lazydocker
+    mpv
   ];
 
   programs.direnv = {

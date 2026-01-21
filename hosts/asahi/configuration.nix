@@ -30,7 +30,7 @@
       "zswap.compressor=zstd"
       "zswap.zpool=zsmalloc"
       "zswap.max_pool_percent=50"
-      "apple_dcp.show_notch=1"
+      "appledrm.show_notch=1"
     ];
     loader.efi.canTouchEfiVariables = false;
   };
@@ -52,15 +52,6 @@
       };
     };
   };
-
-  hardware.graphics.package =
-    # FIXME: Workaround for Mesa 25.3.0 regression
-    # https://github.com/nix-community/nixos-apple-silicon/issues/380
-    assert pkgs.mesa.version == "25.3.0";
-    (import (fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/c5ae371f1a6a7fd27823bc500d9390b38c05fa55.tar.gz";
-      sha256 = "sha256-4PqRErxfe+2toFJFgcRKZ0UI9NSIOJa+7RXVtBhy4KE=";
-    }) { localSystem = pkgs.stdenv.hostPlatform; }).mesa;
 
   powerManagement = {
     enable = true;
@@ -139,10 +130,11 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ 22 ]; # SSH port
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.allowedTCPPorts = [
+    22
+    4444
+  ]; # SSH port
+  networking.firewall.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

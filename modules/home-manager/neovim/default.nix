@@ -73,7 +73,7 @@
         stylua
 
         nixd
-        nixfmt-rfc-style
+        nixfmt
       ];
 
       aliases = [ "vim" ];
