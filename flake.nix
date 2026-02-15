@@ -9,6 +9,10 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    # nix-darwin (macOS)
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     # Apple Silicon
     apple-silicon-support.url = "github:tpwrules/nixos-apple-silicon";
 
@@ -41,6 +45,7 @@
       self,
       nixpkgs,
       home-manager,
+      nix-darwin,
       nixos-wsl,
       stylix,
       nur,
@@ -52,6 +57,8 @@
         "aarch64-linux"
         "i686-linux"
         "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
       ];
       # This is a function that generates an attribute by calling a function you
       # pass to it, with each system as an argument
@@ -88,6 +95,7 @@
                   inherit inputs outputs;
                   # Desktop computer, so we need GUI stuff.
                   enableGui = true;
+                  isDarwin = false;
                 };
                 backupFileExtension = ".backn";
               };
@@ -111,6 +119,7 @@
                 extraSpecialArgs = {
                   inherit inputs outputs;
                   enableGui = false;
+                  isDarwin = false;
                 };
                 backupFileExtension = ".backn";
               };
@@ -118,6 +127,34 @@
               home-manager.useUserPackages = true;
               home-manager.useGlobalPkgs = true;
               home-manager.users.nixos = import ./home-manager/home.nix;
+            }
+          ];
+        };
+      };
+
+      # nix-darwin configuration entrypoints
+      # Available through 'darwin-rebuild switch --flake .#hostname'
+      darwinConfigurations = {
+        # macOS (Apple Silicon)
+        darwin = nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/darwin
+            home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                extraSpecialArgs = {
+                  inherit inputs outputs;
+                  enableGui = true;
+                  isDarwin = true;
+                };
+                backupFileExtension = ".backn";
+              };
+
+              home-manager.useUserPackages = true;
+              home-manager.useGlobalPkgs = true;
+              home-manager.users.snow = import ./home-manager/home.nix;
             }
           ];
         };

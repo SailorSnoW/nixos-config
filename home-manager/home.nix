@@ -4,33 +4,37 @@
   pkgs,
   lib,
   enableGui,
+  isDarwin,
+  config,
   ...
 }:
+let
+  isLinux = !isDarwin;
+in
 {
   # You can import other home-manager modules here
   imports = [
-    inputs.textfox.homeManagerModules.default
-
     outputs.homeManagerModules.zsh
     outputs.homeManagerModules.neovim
     outputs.homeManagerModules.fastfetch
     outputs.homeManagerModules.yazi
     outputs.homeManagerModules.btop
   ]
+  ++ lib.optionals isLinux [
+    # Textfox (Linux only)
+    inputs.textfox.homeManagerModules.default
+  ]
   ++ lib.optionals enableGui [
     outputs.homeManagerModules.gui
   ];
 
   home.packages = with pkgs; [
-    cava
     cowsay
     cargo
-    crush
     talosctl
     talhelper
     kubectl
     kubernetes-helm
-    hcloud
     k9s
     kind
     ncdu
@@ -40,7 +44,6 @@
     claude-code
     codex
     lazydocker
-    mpv
   ];
 
   programs.direnv = {
@@ -64,9 +67,20 @@
     enableZshIntegration = true;
   };
   programs.lazygit.enable = true;
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    matchBlocks."*" = {
+      extraOptions = {
+        AddKeysToAgent = "yes";
+      } // lib.optionalAttrs isDarwin {
+        UseKeychain = "yes";
+      };
+    };
+  };
 
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
+  # Nicely reload system units when changing configs (Linux only)
+  systemd.user.startServices = lib.mkIf isLinux "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "24.11";
