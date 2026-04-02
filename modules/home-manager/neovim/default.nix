@@ -74,6 +74,12 @@
 
         nixd
         nixfmt
+
+        # Linters
+        shellcheck
+        statix
+        markdownlint-cli
+        yamllint
       ];
 
       aliases = [ "vim" ];

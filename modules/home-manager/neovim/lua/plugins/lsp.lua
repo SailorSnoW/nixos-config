@@ -11,20 +11,6 @@ return {
 				desc = "Code Actions",
 			},
 			{
-				"gd",
-				function()
-					vim.lsp.buf.definition()
-				end,
-				desc = "Go to Definition",
-			},
-			{
-				"gr",
-				function()
-					vim.lsp.buf.references()
-				end,
-				desc = "Go to References",
-			},
-			{
 				"K",
 				function()
 					vim.lsp.buf.hover()
