@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  config,
+  lib,
+  isDarwin,
+  ...
+}:
 {
   programs.zsh = {
     enable = true;
@@ -26,11 +31,20 @@
       expireDuplicatesFirst = true;
       save = 1000;
     };
-    initContent = ''
-      if command -v fastfetch >/dev/null 2>&1; then
-        fastfetch
-      fi
-    '';
+    initContent = lib.mkMerge [
+      # Homebrew (Apple Silicon): set up PATH/MANPATH/env before compinit so
+      # brew binaries and zsh completions are available. Darwin-only.
+      (lib.mkIf isDarwin (
+        lib.mkOrder 550 ''
+          eval "$(/opt/homebrew/bin/brew shellenv)"
+        ''
+      ))
+      ''
+        if command -v fastfetch >/dev/null 2>&1; then
+          fastfetch
+        fi
+      ''
+    ];
   };
 
   programs.starship = {
