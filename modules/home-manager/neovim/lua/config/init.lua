@@ -141,6 +141,14 @@ vim.lsp.enable("yamlls")
 vim.lsp.enable("jsonls")
 vim.lsp.enable("terraformls")
 
+-- Swift / SourceKit-LSP
+-- The server config is provided by nvim-lspconfig; the `sourcekit-lsp` binary
+-- ships with the Xcode/Swift toolchain on macOS (found on $PATH via xcrun).
+-- Completion is wired through blink.cmp's global capabilities and the Swift
+-- treesitter grammar is already bundled via `withAllGrammars`.
+-- NOTE: by default sourcekit also attaches to objc/objcpp/c/cpp buffers.
+vim.lsp.enable("sourcekit")
+
 -- Vue/TypeScript LSP
 local vue_language_server_path = vim.fs.dirname(vim.fn.exepath("vue-language-server"))
 	.. "/../lib/language-tools/packages/language-server/node_modules/@vue/typescript-plugin"

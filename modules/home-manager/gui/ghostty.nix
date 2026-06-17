@@ -14,7 +14,8 @@ in
     enableZshIntegration = true;
 
     settings = {
-      theme = "Rose Pine Moon";
+      theme = "light:Rose Pine Dawn,dark:Rose Pine Moon";
+      window-theme = "system";
       background-opacity = 0.8;
 
       window-padding-x = 10;

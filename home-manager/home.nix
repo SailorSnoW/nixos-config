@@ -31,8 +31,6 @@ in
   home.packages = with pkgs; [
     cowsay
     cargo
-    talosctl
-    talhelper
     kubectl
     kubernetes-helm
     k9s
@@ -41,8 +39,6 @@ in
     sops
     age
     devenv
-    claude-code
-    codex
     lazydocker
   ];
 
@@ -53,6 +49,7 @@ in
   };
   programs.git = {
     enable = true;
+    signing.format = null;
     settings.user = {
       name = "SailorSnoW";
       email = "sailorsnow@pm.me";
@@ -73,7 +70,8 @@ in
     matchBlocks."*" = {
       extraOptions = {
         AddKeysToAgent = "yes";
-      } // lib.optionalAttrs isDarwin {
+      }
+      // lib.optionalAttrs isDarwin {
         UseKeychain = "yes";
       };
     };
