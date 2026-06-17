@@ -67,13 +67,11 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks."*" = {
-      extraOptions = {
-        AddKeysToAgent = "yes";
-      }
-      // lib.optionalAttrs isDarwin {
-        UseKeychain = "yes";
-      };
+    settings."*" = {
+      AddKeysToAgent = "yes";
+    }
+    // lib.optionalAttrs isDarwin {
+      UseKeychain = "yes";
     };
   };
 
