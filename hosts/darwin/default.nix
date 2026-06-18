@@ -76,7 +76,6 @@
     jq
     ripgrep
     yq
-    docker-compose
   ];
 
   # Programs
@@ -258,5 +257,5 @@
   };
 
   # System state version
-  system.stateVersion = 5;
+  system.stateVersion = 6;
 }

@@ -66,6 +66,7 @@
         imagemagick
         mermaid-cli
         prettierd
+        prettier
         shfmt
         stdenv.cc.cc
 

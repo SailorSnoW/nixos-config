@@ -5,8 +5,6 @@
   neovim = import ./neovim;
   yazi = import ./yazi.nix;
   zsh = import ./zsh.nix;
-  streamrip = import ./streamrip.nix;
-  spotify-player = import ./spotify-player.nix;
   btop = import ./btop.nix;
 
   # Related Desktop apps requiring DestopManager and session
