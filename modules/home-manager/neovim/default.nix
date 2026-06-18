@@ -59,11 +59,13 @@
 
       extraBinPath = with pkgs; [
         universal-ctags
+        tree-sitter
         curl
         ripgrep
         fd
         tectonic
         imagemagick
+        ghostscript
         mermaid-cli
         prettierd
         prettier

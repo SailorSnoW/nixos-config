@@ -107,7 +107,7 @@
       # Mouse/Trackpad
       AppleShowScrollBars = "WhenScrolling";
       NSScrollAnimationEnabled = true;
-      "com.apple.swipescrolldirection" = true; # Natural scrolling
+      "com.apple.swipescrolldirection" = false; # Natural scrolling
       "com.apple.trackpad.forceClick" = true;
       "com.apple.trackpad.scaling" = 0.875;
 
