@@ -243,19 +243,17 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
+      cleanup = "zap";
     };
     global = {
       brewfile = true;
     };
     taps = [ ];
     brews = [
-      "protobuf"
-      "python@3.10"
       "r0gue-io/pop-cli/pop"
     ];
     casks = [
       "docker-desktop"
-      "codex"
     ];
   };
 

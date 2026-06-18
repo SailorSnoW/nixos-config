@@ -30,7 +30,6 @@ in
 
   home.packages = with pkgs; [
     cowsay
-    cargo
     kubectl
     kubernetes-helm
     k9s
@@ -41,6 +40,10 @@ in
     devenv
     lazydocker
   ];
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
   programs.direnv = {
     enable = true;
