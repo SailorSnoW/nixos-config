@@ -9,7 +9,6 @@
   textfox = {
     enable = true;
     profile = "snow";
-    useLegacyExtensions = false;
     config = {
       border = {
         color = "#393552";

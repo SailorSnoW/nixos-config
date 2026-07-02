@@ -27,6 +27,34 @@ Optional: Home Manager only (ad‑hoc)
 home-manager switch --flake .#snow@asahi
 ```
 
+### 🪟 Deploy on WSL2 (Windows)
+
+1) Install [NixOS-WSL](https://github.com/nix-community/NixOS-WSL): download `nixos.wsl` from the latest release, then
+
+```powershell
+wsl --install --from-file nixos.wsl
+```
+
+2) Inside the distro, clone the repository and apply the flake (use `boot`, not `switch`, so the default user change from `nixos` to `snow` is applied cleanly)
+
+```bash
+sudo nixos-rebuild boot --flake .#wsl
+```
+
+3) Restart the distro from PowerShell
+
+```powershell
+wsl -t NixOS
+wsl -d NixOS --user root exit
+wsl -t NixOS
+```
+
+Subsequent rebuilds from inside WSL:
+
+```bash
+sudo nixos-rebuild switch --flake .#wsl
+```
+
 —
 
 ## 🔧 Build, Test, Update
@@ -46,9 +74,11 @@ home-manager switch --flake .#snow@asahi
 
 —
 
-## 🖥️ Host
+## 🖥️ Hosts
 
 - `asahi`: Asahi Linux on Apple Silicon (daily driver)
+- `wsl`: NixOS on WSL2, headless — same CLI tooling, no GUI modules
+- `darwin`: macOS via nix-darwin
 
 —
 
@@ -57,6 +87,8 @@ home-manager switch --flake .#snow@asahi
 - `flake.nix`/`flake.lock`: Flake entry and locked inputs
 - `hosts/`
   - `asahi/`: Host configuration (imports Apple Silicon support)
+  - `wsl/`: NixOS-WSL host configuration (headless)
+  - `darwin/`: macOS (nix-darwin) host configuration
   - `common/`: Shared host glue (`boot.nix`, `locale.nix`, `desktop.nix`, `users.nix`)
 - `home-manager/`: User config and assets; applied via system rebuilds
 - `modules/`

@@ -126,7 +126,7 @@
 
               home-manager.useUserPackages = true;
               home-manager.useGlobalPkgs = true;
-              home-manager.users.nixos = import ./home-manager/home.nix;
+              home-manager.users.snow = import ./home-manager/home.nix;
             }
           ];
         };

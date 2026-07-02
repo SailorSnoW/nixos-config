@@ -8,6 +8,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # Rebuild system (primary command)
 sudo nixos-rebuild switch --flake .#asahi
 
+# Rebuild WSL host (from inside the WSL distro)
+sudo nixos-rebuild switch --flake .#wsl
+
+# Rebuild macOS host
+darwin-rebuild switch --flake .#darwin
+
 # Home Manager only (ad-hoc)
 home-manager switch --flake .#snow@asahi
 
@@ -26,14 +32,15 @@ nix build .#tentrackule
 
 ## Architecture
 
-This is a Nix Flakes-based NixOS configuration with integrated Home Manager. Two hosts are configured:
+This is a Nix Flakes-based NixOS configuration with integrated Home Manager. Three hosts are configured:
 - **asahi**: Apple Silicon (Asahi Linux) with full desktop GUI
-- **wsl**: Windows Subsystem for Linux, headless
+- **wsl**: NixOS on WSL2 (NixOS-WSL), headless — shares `hosts/common` and all CLI Home Manager modules
+- **darwin**: macOS via nix-darwin
 
 ### Key Directories
 
-- `hosts/asahi/`, `hosts/wsl/` - Host-specific configurations
-- `hosts/common/` - Shared host settings (boot, locale, users, desktop)
+- `hosts/asahi/`, `hosts/wsl/`, `hosts/darwin/` - Host-specific configurations
+- `hosts/common/` - Shared NixOS host settings; `default.nix` is the core imported by every NixOS host, `boot.nix`/`desktop.nix` are opt-in for physical/GUI machines
 - `home-manager/home.nix` - User configuration entry point
 - `modules/nixos/` - Reusable NixOS modules
 - `modules/home-manager/` - Reusable Home Manager modules (terminal tools, GUI apps)

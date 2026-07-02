@@ -13,6 +13,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common
+    ../common/boot.nix
     ../common/desktop.nix
     inputs.apple-silicon-support.nixosModules.apple-silicon-support
   ];
@@ -85,8 +86,6 @@
     cmatrix
     cbonsai
     niri
-    podman-tui
-    podman-compose
     light
     inputs.noctalia.packages.${stdenv.hostPlatform.system}.default
   ];
@@ -98,20 +97,10 @@
     upower.enable = true;
     fstrim.enable = true;
     udisks2.enable = true;
-  };
 
-  # Enable common container config files in /etc/containers
-  virtualisation.containers.enable = true;
-  virtualisation = {
-    podman = {
-      enable = true;
+    logind.settings.Login.HandlePowerKey = "suspend";
 
-      # Create a `docker` alias for podman, to use it as a drop-in replacement
-      dockerCompat = true;
-
-      # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.settings.dns_enabled = true;
-    };
+    tailscale.enable = true;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
